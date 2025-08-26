@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join LinkedIn Clone - Create Your Professional Profile</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flinkedinc5262back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header with Logo and Progress -->
+    <header class="bg-surface shadow-card border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <svg class="w-10 h-10 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span class="ml-3 text-2xl font-bold text-primary">LinkedIn Clone</span>
+                </div>
+                
+                <!-- Progress Indicator -->
+                <div class="hidden sm:flex items-center space-x-2">
+                    <div class="flex items-center">
+                        <div id="step1-indicator" class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">1</div>
+                        <div class="w-12 h-1 bg-gray-200 mx-2">
+                            <div id="progress1" class="h-full bg-primary transition-all duration-300" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div id="step2-indicator" class="w-8 h-8 rounded-full bg-gray-200 text-text-secondary flex items-center justify-center text-sm font-medium">2</div>
+                        <div class="w-12 h-1 bg-gray-200 mx-2">
+                            <div id="progress2" class="h-full bg-primary transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div id="step3-indicator" class="w-8 h-8 rounded-full bg-gray-200 text-text-secondary flex items-center justify-center text-sm font-medium">3</div>
+                </div>
+
+                <!-- Mobile Progress -->
+                <div class="sm:hidden">
+                    <span id="mobile-progress" class="text-sm text-text-secondary font-medium">Step 1 of 3</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
+                
+                <!-- Form Section -->
+                <div class="max-w-md mx-auto lg:max-w-none">
+                    <!-- Welcome Message -->
+                    <div class="text-center lg:text-left mb-8">
+                        <h1 class="text-3xl font-bold text-text-primary mb-2">Make the most of your professional life</h1>
+                        <p class="text-text-secondary">Create your profile to connect with professionals and discover opportunities.</p>
+                    </div>
+
+                    <!-- Registration Form -->
+                    <div class="card">
+                        <form id="registrationForm" class="space-y-6">
+                            
+                            <!-- Step 1: Basic Information -->
+                            <div id="step1" class="step-content">
+                                <div class="mb-6">
+                                    <h2 class="text-xl font-semibold text-text-primary mb-2">Basic Information</h2>
+                                    <p class="text-sm text-text-secondary">Let's start with the basics</p>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <!-- First Name -->
+                                    <div>
+                                        <label for="firstName" class="block text-sm font-medium text-text-primary mb-2">
+                                            First Name *
+                                        </label>
+                                        <input type="text" id="firstName" name="firstName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 text-text-primary placeholder-text-secondary" placeholder="John" autocomplete="given-name" />
+                                        <div id="firstNameError" class="text-error text-sm mt-1 hidden"></div>
+                                    </div>
+
+                                    <!-- Last Name -->
+                                    <div>
+                                        <label for="lastName" class="block text-sm font-medium text-text-primary mb-2">
+                                            Last Name *
+                                        </label>
+                                        <input type="text" id="lastName" name="lastName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 text-text-primary placeholder-text-secondary" placeholder="Doe" autocomplete="family-name" />
+                                        <div id="lastNameError" class="text-error text-sm mt-1 hidden"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-text-primary mb-2">
+                                        Email Address *
+                                    </label>
+                                    <div class="relative">
+                                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 text-text-primary placeholder-text-secondary" placeholder="john.doe@email.com" autocomplete="email" />
+                                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                            <i class="fas fa-envelope text-text-secondary"></i>
+                                        </div>
+                                    </div>
+                                    <div id="emailError" class="text-error text-sm mt-1 hidden"></div>
+                                </div>
+
+                                <!-- Password -->
+                                <div>
+                                    <label for="password" class="block text-sm font-medium text-text-primary mb-2">
+                                        Password *
+                                    </label>
+                                    <div class="relative">
+                                        <input type="password" id="password" name="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 text-text-primary placeholder-text-secondary pr-12" placeholder="Create a strong password" autocomplete="new-password" />
+                                        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-text-secondary hover:text-text-primary transition-colors duration-200">
+                                            <i class="fas fa-eye" id="eyeIcon"></i>
+                                        </button>
+                                    </div>
+                                    <div id="passwordError" class="text-error text-sm mt-1 hidden"></div>
+                                    
+                                    <!-- Password Strength Indicator -->
+                                    <div class="mt-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                                <div id="passwordStrength" class="h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                            </div>
+                                            <span id="strengthText" class="text-xs text-text-secondary"></span>
+                                        </div>
+                                        <div class="mt-1 text-xs text-text-secondary">
+                                            <p>Password should contain at least 8 characters with uppercase, lowercase, and numbers</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Professional Information -->
+                            <div id="step2" class="step-content hidden">
+                                <div class="mb-6">
+                                    <h2 class="text-xl font-semibold text-text-primary mb-2">Professional Information</h2>
+                                    <p class="text-sm text-text-secondary">Tell us about your professional background</p>
+                                </div>
+
+                                <!-- Job Title -->
+                                <div>
+                                    <label for="jobTitle" class="block text-sm font-medium text-text-primary mb-2">
+                                        Current Job Title *
+                                    </label>
+                                    <input type="text" id="jobTitle" name="jobTitle" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 text-text-primary placeholder-text-secondary" placeholder="Software Engineer" autocomplete="organization-title" />
+                                    <div id="jobTitleError" class="text-error text-sm mt-1 hidden"></div>
+                                </div>
+
+                                <!-- Company -->
+                                <div>
+                                    <label for="company" class="block text-sm font-medium text-text-primary mb-2">
+                                        Company *
+                                    </label>
+                                    <input type="text" id="company" name="company" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 text-text-primary placeholder-text-secondary" placeholder="Tech Company Inc." autocomplete="organization" />
+                                    <div id="companyError" class="text-error text-sm mt-1 hidden"></div>
+                                </div>
+
+                                <!-- Industry -->
+                                <div>
+                                    <label for="industry" class="block text-sm font-medium text-text-primary mb-2">
+                                        Industry *
+                                    </label>
+                                    <select id="industry" name="industry" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 text-text-primary">
+                                        <option value>Select your industry</option>
+                                        <option value="technology">Technology</option>
+                                        <option value="finance">Finance</option>
+                                        <option value="healthcare">Healthcare</option>
+                                        <option value="education">Education</option>
+                                        <option value="marketing">Marketing</option>
+                                        <option value="consulting">Consulting</option>
+                                        <option value="manufacturing">Manufacturing</option>
+                                        <option value="retail">Retail</option>
+                                        <option value="real-estate">Real Estate</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                    <div id="industryError" class="text-error text-sm mt-1 hidden"></div>
+                                </div>
+
+                                <!-- Location -->
+                                <div>
+                                    <label for="location" class="block text-sm font-medium text-text-primary mb-2">
+                                        Location *
+                                    </label>
+                                    <div class="relative">
+                                        <input type="text" id="location" name="location" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 text-text-primary placeholder-text-secondary" placeholder="New York, NY" autocomplete="address-level2" />
+                                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                            <i class="fas fa-map-marker-alt text-text-secondary"></i>
+                                        </div>
+                                    </div>
+                                    <div id="locationError" class="text-error text-sm mt-1 hidden"></div>
+                                    
+                                    <!-- Location Suggestions -->
+                                    <div id="locationSuggestions" class="hidden absolute z-10 w-full bg-surface border border-gray-300 rounded-lg mt-1 shadow-modal max-h-48 overflow-y-auto">
+                                        <!-- Dynamic suggestions will be populated here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Profile Setup -->
+                            <div id="step3" class="step-content hidden">
+                                <div class="mb-6">
+                                    <h2 class="text-xl font-semibold text-text-primary mb-2">Complete Your Profile</h2>
+                                    <p class="text-sm text-text-secondary">Add a profile photo and finalize your account</p>
+                                </div>
+
+                                <!-- Profile Photo Upload -->
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium text-text-primary mb-4">
+                                        Profile Photo
+                                    </label>
+                                    
+                                    <div class="flex flex-col items-center">
+                                        <!-- Photo Preview -->
+                                        <div class="relative mb-4">
+                                            <div id="photoPreview" class="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden border-4 border-gray-300">
+                                                <i class="fas fa-user text-4xl text-text-secondary"></i>
+                                                <img id="previewImage" class="w-full h-full object-cover hidden" alt="Profile preview" />
+                                            </div>
+                                            <button type="button" id="removePhoto" class="absolute -top-2 -right-2 w-8 h-8 bg-error text-white rounded-full flex items-center justify-center text-sm hover:bg-error-700 transition-colors duration-200 hidden">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+
+                                        <!-- Upload Options -->
+                                        <div class="flex flex-col sm:flex-row gap-3">
+                                            <label for="photoUpload" class="btn-secondary cursor-pointer text-center">
+                                                <i class="fas fa-camera mr-2"></i>
+                                                Upload Photo
+                                            </label>
+                                            <input type="file" id="photoUpload" name="photo" accept="image/*" class="hidden" />
+                                            
+                                            <button type="button" id="linkedinImport" class="px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary-50 transition-colors duration-200 flex items-center justify-center">
+                                                <i class="fab fa-linkedin mr-2"></i>
+                                                Import from LinkedIn
+                                            </button>
+                                        </div>
+                                        
+                                        <p class="text-xs text-text-secondary mt-2 text-center">
+                                            Recommended: Square image, at least 400x400 pixels
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Terms and Privacy -->
+                                <div class="space-y-4">
+                                    <div class="flex items-start">
+                                        <input id="terms" name="terms" type="checkbox" required class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded mt-1" />
+                                        <label for="terms" class="ml-3 text-sm text-text-secondary">
+                                            I agree to the 
+                                            <a href="javascript:void(0)" class="text-primary hover:text-primary-700 font-medium">Terms of Service</a>
+                                            and acknowledge the 
+                                            <a href="javascript:void(0)" class="text-primary hover:text-primary-700 font-medium">Privacy Policy</a>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="flex items-start">
+                                        <input id="marketing" name="marketing" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded mt-1" />
+                                        <label for="marketing" class="ml-3 text-sm text-text-secondary">
+                                            I'd like to receive updates about new features and opportunities
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Navigation Buttons -->
+                            <div class="flex justify-between pt-6 border-t border-gray-200">
+                                <button type="button" id="backBtn" class="px-6 py-3 border border-gray-300 text-text-primary rounded-lg hover:bg-gray-50 transition-colors duration-200 hidden">
+                                    <i class="fas fa-arrow-left mr-2"></i>
+                                    Back
+                                </button>
+                                
+                                <div class="flex space-x-3 ml-auto">
+                                    <button type="button" id="continueBtn" class="btn-primary flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg transition-all duration-200 hover:shadow-md">
+                                        <span id="continueText">Continue</span>
+                                        <i class="fas fa-arrow-right ml-2"></i>
+                                        <div id="continueSpinner" class="hidden ml-2">
+                                            <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Social Registration Alternative -->
+                            <div class="relative my-6">
+                                <div class="absolute inset-0 flex items-center">
+                                    <div class="w-full border-t border-gray-300"></div>
+                                </div>
+                                <div class="relative flex justify-center text-sm">
+                                    <span class="px-2 bg-surface text-text-secondary">Or sign up with</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <button type="button" id="linkedinSignup" class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg text-text-primary bg-surface hover:bg-gray-50 transition-colors duration-200">
+                                    <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="#0077B5">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    </svg>
+                                    Continue with LinkedIn
+                                </button>
+                                
+                                <button type="button" id="googleSignup" class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg text-text-primary bg-surface hover:bg-gray-50 transition-colors duration-200">
+                                    <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24">
+                                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                    </svg>
+                                    Continue with Google
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Login Link -->
+                    <div class="text-center mt-6">
+                        <p class="text-text-secondary">
+                            Already have an account? 
+                            <a href="login.html" class="text-primary hover:text-primary-700 font-medium transition-colors duration-200">
+                                Sign in
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Benefits Section (Desktop) -->
+                <div class="hidden lg:block lg:sticky lg:top-24">
+                    <div class="card">
+                        <h3 class="text-xl font-semibold text-text-primary mb-4">Join millions of professionals</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Benefit 1 -->
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-users text-primary text-xl"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-text-primary mb-1">Connect with professionals</h4>
+                                    <p class="text-sm text-text-secondary">Build your network and discover new opportunities in your industry.</p>
+                                </div>
+                            </div>
+
+                            <!-- Benefit 2 -->
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-briefcase text-secondary text-xl"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-text-primary mb-1">Find your dream job</h4>
+                                    <p class="text-sm text-text-secondary">Access exclusive job opportunities from top companies worldwide.</p>
+                                </div>
+                            </div>
+
+                            <!-- Benefit 3 -->
+                            <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0">
+                                    <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-chart-line text-accent text-xl"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-text-primary mb-1">Grow your career</h4>
+                                    <p class="text-sm text-text-secondary">Learn from industry experts and advance your professional skills.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial -->
+                        <div class="mt-8 p-4 bg-primary-50 rounded-lg">
+                            <div class="flex items-center mb-3">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Sarah Johnson" class="w-10 h-10 rounded-full object-cover mr-3" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <p class="font-medium text-text-primary text-sm">Sarah Johnson</p>
+                                    <p class="text-xs text-text-secondary">Marketing Director</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-text-secondary italic">
+                                "LinkedIn Clone helped me connect with industry leaders and land my dream job. The networking opportunities are incredible!"
+                            </p>
+                        </div>
+
+                        <!-- Trust Indicators -->
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <div class="flex items-center justify-center space-x-6 text-sm">
+                                <div class="flex items-center text-success">
+                                    <i class="fas fa-shield-alt mr-2"></i>
+                                    <span>SSL Secured</span>
+                                </div>
+                                <div class="flex items-center text-success">
+                                    <i class="fas fa-lock mr-2"></i>
+                                    <span>Privacy Protected</span>
+                                </div>
+                                <div class="flex items-center text-success">
+                                    <i class="fas fa-check-circle mr-2"></i>
+                                    <span>GDPR Compliant</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-gray-200 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-text-secondary text-sm">
+                <p>&copy; 2025 LinkedIn Clone. All Rights Reserved.</p>
+                <div class="mt-2 space-x-4">
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Terms of Service</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Help Center</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Toast -->
+    <div id="successToast" class="toast hidden">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <i class="fas fa-check-circle text-success text-lg"></i>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-text-primary">Registration successful!</p>
+                <p class="text-xs text-text-secondary">Welcome to LinkedIn Clone. Redirecting to dashboard...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Toast -->
+    <div id="errorToast" class="toast hidden border-l-4 border-error">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <i class="fas fa-exclamation-circle text-error text-lg"></i>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-text-primary">Registration failed</p>
+                <p class="text-xs text-text-secondary" id="errorMessage">Please check your information and try again.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Crop Modal -->
+    <div id="cropModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-surface rounded-lg p-6 max-w-md w-full mx-4">
+            <h3 class="text-lg font-semibold text-text-primary mb-4">Crop Your Photo</h3>
+            <div class="mb-4">
+                <div id="cropContainer" class="w-full h-64 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <canvas id="cropCanvas" class="max-w-full max-h-full"></canvas>
+                </div>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button type="button" id="cancelCrop" class="px-4 py-2 border border-gray-300 text-text-primary rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                    Cancel
+                </button>
+                <button type="button" id="applyCrop" class="btn-primary">
+                    Apply
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Registration form state
+        let currentStep = 1;
+        const totalSteps = 3;
+        let formData = {};
+
+        // Mock location suggestions
+        const locationSuggestions = [
+            'New York, NY', 'Los Angeles, CA', 'Chicago, IL', 'Houston, TX', 'Phoenix, AZ',
+            'Philadelphia, PA', 'San Antonio, TX', 'San Diego, CA', 'Dallas, TX', 'San Jose, CA',
+            'Austin, TX', 'Jacksonville, FL', 'Fort Worth, TX', 'Columbus, OH', 'Charlotte, NC'
+        ];
+
+        // DOM Elements
+        const registrationForm = document.getElementById('registrationForm');
+        const continueBtn = document.getElementById('continueBtn');
+        const backBtn = document.getElementById('backBtn');
+        const continueText = document.getElementById('continueText');
+        const continueSpinner = document.getElementById('continueSpinner');
+        const successToast = document.getElementById('successToast');
+        const errorToast = document.getElementById('errorToast');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Password elements
+        const passwordInput = document.getElementById('password');
+        const togglePasswordBtn = document.getElementById('togglePassword');
+        const eyeIcon = document.getElementById('eyeIcon');
+        const passwordStrength = document.getElementById('passwordStrength');
+        const strengthText = document.getElementById('strengthText');
+
+        // Photo upload elements
+        const photoUpload = document.getElementById('photoUpload');
+        const photoPreview = document.getElementById('photoPreview');
+        const previewImage = document.getElementById('previewImage');
+        const removePhoto = document.getElementById('removePhoto');
+
+        // Location elements
+        const locationInput = document.getElementById('location');
+        const locationSuggestionsDiv = document.getElementById('locationSuggestions');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStepDisplay();
+            setupEventListeners();
+            loadSavedData();
+        });
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Navigation buttons
+            continueBtn.addEventListener('click', handleContinue);
+            backBtn.addEventListener('click', handleBack);
+
+            // Password toggle
+            togglePasswordBtn.addEventListener('click', togglePassword);
+            passwordInput.addEventListener('input', checkPasswordStrength);
+
+            // Photo upload
+            photoUpload.addEventListener('change', handlePhotoUpload);
+            removePhoto.addEventListener('click', handleRemovePhoto);
+
+            // Location autocomplete
+            locationInput.addEventListener('input', handleLocationInput);
+            locationInput.addEventListener('blur', () => {
+                setTimeout(() => locationSuggestionsDiv.classList.add('hidden'), 200);
+            });
+
+            // Real-time validation
+            setupRealTimeValidation();
+
+            // Social registration
+            document.getElementById('linkedinSignup').addEventListener('click', () => handleSocialSignup('LinkedIn'));
+            document.getElementById('googleSignup').addEventListener('click', () => handleSocialSignup('Google'));
+            document.getElementById('linkedinImport').addEventListener('click', handleLinkedInImport);
+
+            // Form persistence
+            registrationForm.addEventListener('input', saveFormData);
+        }
+
+        // Real-time validation setup
+        function setupRealTimeValidation() {
+            const fields = ['firstName', 'lastName', 'email', 'password', 'jobTitle', 'company', 'industry', 'location'];
+            
+            fields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('input', () => validateField(fieldId));
+                    field.addEventListener('blur', () => validateField(fieldId));
+                }
+            });
+        }
+
+        // Password toggle
+        function togglePassword() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            if (type === 'text') {
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Password strength checker
+        function checkPasswordStrength() {
+            const password = passwordInput.value;
+            let strength = 0;
+            let strengthLabel = '';
+            let strengthColor = '';
+
+            if (password.length >= 8) strength += 25;
+            if (/[a-z]/.test(password)) strength += 25;
+            if (/[A-Z]/.test(password)) strength += 25;
+            if (/[0-9]/.test(password)) strength += 25;
+
+            if (strength === 0) {
+                strengthLabel = '';
+                strengthColor = '';
+            } else if (strength <= 25) {
+                strengthLabel = 'Weak';
+                strengthColor = '#E74C3C';
+            } else if (strength <= 50) {
+                strengthLabel = 'Fair';
+                strengthColor = '#F39C12';
+            } else if (strength <= 75) {
+                strengthLabel = 'Good';
+                strengthColor = '#4A90A4';
+            } else {
+                strengthLabel = 'Strong';
+                strengthColor = '#27AE60';
+            }
+
+            passwordStrength.style.width = strength + '%';
+            passwordStrength.style.backgroundColor = strengthColor;
+            strengthText.textContent = strengthLabel;
+            strengthText.style.color = strengthColor;
+        }
+
+        // Location autocomplete
+        function handleLocationInput() {
+            const query = locationInput.value.toLowerCase();
+            
+            if (query.length < 2) {
+                locationSuggestionsDiv.classList.add('hidden');
+                return;
+            }
+
+            const filtered = locationSuggestions.filter(location => 
+                location.toLowerCase().includes(query)
+            );
+
+            if (filtered.length > 0) {
+                locationSuggestionsDiv.innerHTML = filtered.map(location => 
+                    `<div class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm" onclick="selectLocation('${location}')">${location}</div>`
+                ).join('');
+                locationSuggestionsDiv.classList.remove('hidden');
+            } else {
+                locationSuggestionsDiv.classList.add('hidden');
+            }
+        }
+
+        function selectLocation(location) {
+            locationInput.value = location;
+            locationSuggestionsDiv.classList.add('hidden');
+            clearFieldError('location');
+        }
+
+        // Photo upload handling
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                showToast(errorToast, 'Please select a valid image file.');
+                return;
+            }
+
+            // Validate file size (5MB max)
+            if (file.size > 5 * 1024 * 1024) {
+                showToast(errorToast, 'Image size should be less than 5MB.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                previewImage.classList.remove('hidden');
+                photoPreview.querySelector('i').classList.add('hidden');
+                removePhoto.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function handleRemovePhoto() {
+            previewImage.classList.add('hidden');
+            photoPreview.querySelector('i').classList.remove('hidden');
+            removePhoto.classList.add('hidden');
+            photoUpload.value = '';
+        }
+
+        // LinkedIn import simulation
+        function handleLinkedInImport() {
+            const btn = document.getElementById('linkedinImport');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<div class="animate-spin h-4 w-4 border-2 border-gray-300 border-t-primary rounded-full mr-2"></div>Importing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                // Simulate imported data
+                document.getElementById('jobTitle').value = 'Senior Software Engineer';
+                document.getElementById('company').value = 'Tech Innovations Inc.';
+                document.getElementById('industry').value = 'technology';
+                document.getElementById('location').value = 'San Francisco, CA';
+                
+                // Simulate profile photo
+                previewImage.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3';
+                previewImage.classList.remove('hidden');
+                photoPreview.querySelector('i').classList.add('hidden');
+                removePhoto.classList.remove('hidden');
+
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                
+                showToast(successToast, 'Profile information imported successfully!');
+            }, 2000);
+        }
+
+        // Field validation
+        function validateField(fieldId) {
+            const field = document.getElementById(fieldId);
+            const value = field.value.trim();
+            let isValid = true;
+            let errorMsg = '';
+
+            switch (fieldId) {
+                case 'firstName':
+                case 'lastName':
+                    if (!value) {
+                        errorMsg = 'This field is required';
+                        isValid = false;
+                    } else if (value.length < 2) {
+                        errorMsg = 'Must be at least 2 characters';
+                        isValid = false;
+                    }
+                    break;
+
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!value) {
+                        errorMsg = 'Email is required';
+                        isValid = false;
+                    } else if (!emailRegex.test(value)) {
+                        errorMsg = 'Please enter a valid email address';
+                        isValid = false;
+                    }
+                    break;
+
+                case 'password':
+                    if (!value) {
+                        errorMsg = 'Password is required';
+                        isValid = false;
+                    } else if (value.length < 8) {
+                        errorMsg = 'Password must be at least 8 characters';
+                        isValid = false;
+                    }
+                    break;
+
+                case 'jobTitle':
+                case 'company':
+                case 'location':
+                    if (!value) {
+                        errorMsg = 'This field is required';
+                        isValid = false;
+                    }
+                    break;
+
+                case 'industry':
+                    if (!value) {
+                        errorMsg = 'Please select an industry';
+                        isValid = false;
+                    }
+                    break;
+            }
+
+            if (isValid) {
+                clearFieldError(fieldId);
+            } else {
+                showFieldError(fieldId, errorMsg);
+            }
+
+            return isValid;
+        }
+
+        // Error handling
+        function showFieldError(fieldId, message) {
+            const errorDiv = document.getElementById(fieldId + 'Error');
+            const field = document.getElementById(fieldId);
+            
+            if (errorDiv && field) {
+                errorDiv.textContent = message;
+                errorDiv.classList.remove('hidden');
+                field.classList.add('border-error', 'focus:ring-error', 'focus:border-error');
+                field.classList.remove('border-gray-300', 'focus:ring-primary', 'focus:border-primary');
+            }
+        }
+
+        function clearFieldError(fieldId) {
+            const errorDiv = document.getElementById(fieldId + 'Error');
+            const field = document.getElementById(fieldId);
+            
+            if (errorDiv && field) {
+                errorDiv.classList.add('hidden');
+                field.classList.remove('border-error', 'focus:ring-error', 'focus:border-error');
+                field.classList.add('border-gray-300', 'focus:ring-primary', 'focus:border-primary');
+            }
+        }
+
+        // Step validation
+        function validateStep(step) {
+            let isValid = true;
+
+            switch (step) {
+                case 1:
+                    const step1Fields = ['firstName', 'lastName', 'email', 'password'];
+                    step1Fields.forEach(fieldId => {
+                        if (!validateField(fieldId)) {
+                            isValid = false;
+                        }
+                    });
+                    break;
+
+                case 2:
+                    const step2Fields = ['jobTitle', 'company', 'industry', 'location'];
+                    step2Fields.forEach(fieldId => {
+                        if (!validateField(fieldId)) {
+                            isValid = false;
+                        }
+                    });
+                    break;
+
+                case 3:
+                    const termsCheckbox = document.getElementById('terms');
+                    if (!termsCheckbox.checked) {
+                        showToast(errorToast, 'Please accept the Terms of Service to continue.');
+                        isValid = false;
+                    }
+                    break;
+            }
+
+            return isValid;
+        }
+
+        // Navigation handlers
+        function handleContinue() {
+            if (!validateStep(currentStep)) {
+                return;
+            }
+
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStepDisplay();
+                saveFormData();
+            } else {
+                submitRegistration();
+            }
+        }
+
+        function handleBack() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepDisplay();
+            }
+        }
+
+        // Step display update
+        function updateStepDisplay() {
+            // Hide all steps
+            for (let i = 1; i <= totalSteps; i++) {
+                document.getElementById(`step${i}`).classList.add('hidden');
+            }
+
+            // Show current step
+            document.getElementById(`step${currentStep}`).classList.remove('hidden');
+
+            // Update progress indicators
+            updateProgressIndicators();
+
+            // Update navigation buttons
+            updateNavigationButtons();
+
+            // Update mobile progress
+            document.getElementById('mobile-progress').textContent = `Step ${currentStep} of ${totalSteps}`;
+        }
+
+        function updateProgressIndicators() {
+            for (let i = 1; i <= totalSteps; i++) {
+                const indicator = document.getElementById(`step${i}-indicator`);
+                const progress = document.getElementById(`progress${i}`);
+
+                if (i < currentStep) {
+                    // Completed step
+                    indicator.classList.remove('bg-gray-200', 'text-text-secondary');
+                    indicator.classList.add('bg-success', 'text-white');
+                    indicator.innerHTML = '<i class="fas fa-check text-xs"></i>';
+                    if (progress) progress.style.width = '100%';
+                } else if (i === currentStep) {
+                    // Current step
+                    indicator.classList.remove('bg-gray-200', 'text-text-secondary', 'bg-success');
+                    indicator.classList.add('bg-primary', 'text-white');
+                    indicator.textContent = i;
+                    if (progress) progress.style.width = '100%';
+                } else {
+                    // Future step
+                    indicator.classList.remove('bg-primary', 'bg-success', 'text-white');
+                    indicator.classList.add('bg-gray-200', 'text-text-secondary');
+                    indicator.textContent = i;
+                    if (progress) progress.style.width = '0%';
+                }
+            }
+        }
+
+        function updateNavigationButtons() {
+            // Back button
+            if (currentStep > 1) {
+                backBtn.classList.remove('hidden');
+            } else {
+                backBtn.classList.add('hidden');
+            }
+
+            // Continue button
+            if (currentStep === totalSteps) {
+                continueText.textContent = 'Create Account';
+                continueBtn.querySelector('i').classList.remove('fa-arrow-right');
+                continueBtn.querySelector('i').classList.add('fa-user-plus');
+            } else {
+                continueText.textContent = 'Continue';
+                continueBtn.querySelector('i').classList.remove('fa-user-plus');
+                continueBtn.querySelector('i').classList.add('fa-arrow-right');
+            }
+        }
+
+        // Form data persistence
+        function saveFormData() {
+            const formData = new FormData(registrationForm);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            localStorage.setItem('registrationFormData', JSON.stringify(data));
+        }
+
+        function loadSavedData() {
+            const savedData = localStorage.getItem('registrationFormData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                
+                Object.keys(data).forEach(key => {
+                    const field = document.getElementById(key);
+                    if (field && field.type !== 'file') {
+                        if (field.type === 'checkbox') {
+                            field.checked = data[key] === 'on';
+                        } else {
+                            field.value = data[key];
+                        }
+                    }
+                });
+            }
+        }
+
+        // Registration submission
+        function submitRegistration() {
+            // Show loading state
+            continueText.textContent = 'Creating Account...';
+            continueSpinner.classList.remove('hidden');
+            continueBtn.disabled = true;
+
+            // Simulate registration process
+            setTimeout(() => {
+                // Create user session
+                const userData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    jobTitle: document.getElementById('jobTitle').value,
+                    company: document.getElementById('company').value,
+                    industry: document.getElementById('industry').value,
+                    location: document.getElementById('location').value,
+                    registrationDate: new Date().toISOString(),
+                    profileComplete: true
+                };
+
+                localStorage.setItem('userSession', JSON.stringify(userData));
+                localStorage.removeItem('registrationFormData');
+
+                // Show success toast
+                showToast(successToast);
+
+                // Redirect to dashboard
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 2000);
+
+            }, 2000);
+        }
+
+        // Social signup handlers
+        function handleSocialSignup(provider) {
+            const button = event.target.closest('button');
+            const originalText = button.innerHTML;
+            
+            button.disabled = true;
+            button.innerHTML = `<div class="animate-spin h-4 w-4 border-2 border-gray-300 border-t-primary rounded-full mr-3"></div>Connecting...`;
+            
+            setTimeout(() => {
+                // Mock successful social signup
+                const userData = {
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    email: `user@${provider.toLowerCase()}.com`,
+                    jobTitle: 'Professional',
+                    company: `${provider} User`,
+                    industry: 'technology',
+                    location: 'San Francisco, CA',
+                    registrationDate: new Date().toISOString(),
+                    provider: provider,
+                    profileComplete: true
+                };
+                
+                localStorage.setItem('userSession', JSON.stringify(userData));
+                showToast(successToast);
+                
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            }, 2000);
+        }
+
+        // Toast utility
+        function showToast(toastElement, customMessage = null, duration = 3000) {
+            if (customMessage && toastElement === errorToast) {
+                errorMessage.textContent = customMessage;
+            }
+            
+            toastElement.classList.remove('hidden');
+            setTimeout(() => {
+                toastElement.classList.add('hidden');
+            }, duration);
+        }
+
+        // Prevent form submission on Enter key (except on final step)
+        registrationForm.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && currentStep < totalSteps) {
+                e.preventDefault();
+                handleContinue();
+            }
+        });
+
+        // Check if user is already logged in
+        window.addEventListener('load', function() {
+            const userSession = localStorage.getItem('userSession');
+            if (userSession) {
+                window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>

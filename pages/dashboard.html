@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - LinkedIn Clone</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flinkedinc5262back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Global Header Navigation -->
+    <header class="bg-surface shadow-card border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-3">
+                <!-- Logo and Search -->
+                <div class="flex items-center flex-1">
+                    <div class="flex items-center">
+                        <svg class="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        <span class="ml-2 text-lg font-bold text-primary hidden sm:block">LinkedIn Clone</span>
+                    </div>
+                    
+                    <!-- Search Bar -->
+                    <div class="flex-1 max-w-md mx-4">
+                        <div class="relative">
+                            <input type="text" placeholder="Search for people, companies, jobs..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 text-sm" id="globalSearch" />
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
+                                <i class="fas fa-search text-text-secondary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="dashboard.html" class="flex flex-col items-center text-primary hover:text-primary-700 transition-colors duration-200">
+                        <i class="fas fa-home text-lg"></i>
+                        <span class="text-xs mt-1">Home</span>
+                    </a>
+                    <a href="my_network.html" class="flex flex-col items-center text-text-secondary hover:text-primary transition-colors duration-200">
+                        <i class="fas fa-users text-lg"></i>
+                        <span class="text-xs mt-1">My Network</span>
+                        <span class="bg-error text-white text-xs rounded-full px-1 min-w-4 h-4 flex items-center justify-center -mt-1">3</span>
+                    </a>
+                    <a href="job_search.html" class="flex flex-col items-center text-text-secondary hover:text-primary transition-colors duration-200">
+                        <i class="fas fa-briefcase text-lg"></i>
+                        <span class="text-xs mt-1">Jobs</span>
+                    </a>
+                    <a href="javascript:void(0)" class="flex flex-col items-center text-text-secondary hover:text-primary transition-colors duration-200">
+                        <i class="fas fa-comment-dots text-lg"></i>
+                        <span class="text-xs mt-1">Messaging</span>
+                        <span class="bg-error text-white text-xs rounded-full px-1 min-w-4 h-4 flex items-center justify-center -mt-1">2</span>
+                    </a>
+                    <a href="javascript:void(0)" class="flex flex-col items-center text-text-secondary hover:text-primary transition-colors duration-200">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span class="text-xs mt-1">Notifications</span>
+                        <span class="bg-error text-white text-xs rounded-full px-1 min-w-4 h-4 flex items-center justify-center -mt-1">5</span>
+                    </a>
+                    
+                    <!-- Profile Dropdown -->
+                    <div class="relative">
+                        <button id="profileDropdown" class="flex flex-col items-center text-text-secondary hover:text-primary transition-colors duration-200">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Profile" class="w-6 h-6 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <span class="text-xs mt-1">Me</span>
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div id="profileDropdownMenu" class="hidden absolute right-0 mt-2 w-64 bg-surface rounded-lg shadow-modal border border-gray-200 py-2 z-50">
+                            <div class="px-4 py-3 border-b border-gray-200">
+                                <div class="flex items-center">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Profile" class="w-12 h-12 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-text-primary">John Doe</p>
+                                        <p class="text-xs text-text-secondary">Software Engineer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="profile_management.html" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-user mr-3"></i>View Profile
+                            </a>
+                            <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-cog mr-3"></i>Settings & Privacy
+                            </a>
+                            <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-question-circle mr-3"></i>Help
+                            </a>
+                            <hr class="my-2" />
+                            <button id="logoutBtn" class="block w-full text-left px-4 py-2 text-sm text-text-primary hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-sign-out-alt mr-3"></i>Sign Out
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 text-text-secondary hover:text-primary transition-colors duration-200">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Left Sidebar -->
+            <aside class="lg:col-span-3">
+                <!-- Profile Summary Card -->
+                <div class="card mb-6">
+                    <div class="text-center">
+                        <div class="relative">
+                            <div class="w-full h-16 bg-gradient-to-r from-primary to-secondary rounded-t-lg -mx-6 -mt-6 mb-4"></div>
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Profile" class="w-16 h-16 rounded-full object-cover border-4 border-surface absolute -bottom-2 left-1/2 transform -translate-x-1/2" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        </div>
+                        <h3 class="font-semibold text-text-primary mt-4">John Doe</h3>
+                        <p class="text-sm text-text-secondary">Software Engineer at TechCorp</p>
+                        <p class="text-xs text-text-secondary mt-1">San Francisco, CA</p>
+                    </div>
+                    
+                    <hr class="my-4" />
+                    
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-text-secondary">Profile views</span>
+                            <span class="text-sm font-medium text-primary">127</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-text-secondary">Post impressions</span>
+                            <span class="text-sm font-medium text-primary">2,341</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-text-secondary">Connections</span>
+                            <span class="text-sm font-medium text-primary">486</span>
+                        </div>
+                    </div>
+                    
+                    <hr class="my-4" />
+                    
+                    <a href="profile_management.html" class="block text-sm text-primary hover:text-primary-700 font-medium transition-colors duration-200">
+                        <i class="fas fa-user mr-2"></i>View full profile
+                    </a>
+                </div>
+
+                <!-- Quick Stats Card -->
+                <div class="card mb-6">
+                    <h4 class="font-semibold text-text-primary mb-4">Quick Stats</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user-plus text-primary text-sm"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-text-primary">Connection requests</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="bg-error text-white text-xs rounded-full px-2 py-1">3</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-secondary-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-bookmark text-secondary text-sm"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-text-primary">Saved jobs</span>
+                            </div>
+                            <span class="text-sm font-medium text-text-primary">12</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 bg-accent-100 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-eye text-accent text-sm"></i>
+                                </div>
+                                <span class="ml-3 text-sm text-text-primary">Who viewed your profile</span>
+                            </div>
+                            <span class="text-sm font-medium text-text-primary">23</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card hidden lg:block">
+                    <h4 class="font-semibold text-text-primary mb-4">Recent Activity</h4>
+                    <div class="space-y-3">
+                        <div class="text-sm">
+                            <p class="text-text-secondary">You appeared in 23 searches this week</p>
+                            <span class="text-xs text-text-secondary">2 hours ago</span>
+                        </div>
+                        <div class="text-sm">
+                            <p class="text-text-secondary">Sarah Johnson viewed your profile</p>
+                            <span class="text-xs text-text-secondary">5 hours ago</span>
+                        </div>
+                        <div class="text-sm">
+                            <p class="text-text-secondary">New job alert: Senior Developer</p>
+                            <span class="text-xs text-text-secondary">1 day ago</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Feed -->
+            <section class="lg:col-span-6">
+                <!-- Personalized Greeting -->
+                <div class="card mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="text-xl font-semibold text-text-primary">Good morning, John!</h2>
+                            <p class="text-sm text-text-secondary">Ready to make today productive?</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm text-text-secondary">Today</p>
+                            <p class="text-xs text-text-secondary">August 25, 2025</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Key Metrics Dashboard -->
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="text-center p-3 bg-primary-50 rounded-lg">
+                            <div class="text-lg font-semibold text-primary">5</div>
+                            <div class="text-xs text-text-secondary">New messages</div>
+                        </div>
+                        <div class="text-center p-3 bg-secondary-50 rounded-lg">
+                            <div class="text-lg font-semibold text-secondary">12</div>
+                            <div class="text-xs text-text-secondary">Profile views</div>
+                        </div>
+                        <div class="text-center p-3 bg-accent-50 rounded-lg">
+                            <div class="text-lg font-semibold text-accent">3</div>
+                            <div class="text-xs text-text-secondary">Job matches</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Post Creation -->
+                <div class="card mb-6">
+                    <div class="flex items-center space-x-3">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Profile" class="w-12 h-12 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        <button class="flex-1 text-left px-4 py-3 border border-gray-300 rounded-full text-text-secondary hover:bg-gray-50 transition-colors duration-200" id="startPostBtn">
+                            Start a post...
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+                        <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200">
+                            <i class="fas fa-image text-lg"></i>
+                            <span class="text-sm">Photo</span>
+                        </button>
+                        <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200">
+                            <i class="fas fa-video text-lg"></i>
+                            <span class="text-sm">Video</span>
+                        </button>
+                        <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200">
+                            <i class="fas fa-calendar text-lg"></i>
+                            <span class="text-sm">Event</span>
+                        </button>
+                        <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200">
+                            <i class="fas fa-newspaper text-lg"></i>
+                            <span class="text-sm">Article</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Activity Feed -->
+                <div id="activityFeed" class="space-y-6">
+                    <!-- Post 1 -->
+                    <div class="card">
+                        <div class="flex items-start space-x-3">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Sarah Johnson" class="w-12 h-12 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-semibold text-text-primary">Sarah Johnson</h4>
+                                        <p class="text-sm text-text-secondary">Product Manager at InnovateX</p>
+                                        <p class="text-xs text-text-secondary">2 hours ago</p>
+                                    </div>
+                                    <button class="text-text-secondary hover:text-primary transition-colors duration-200">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <p class="text-text-primary">Excited to share that our team just launched a new feature that will revolutionize how users interact with our platform! 🚀 The journey from concept to deployment was incredible, and I'm grateful for the amazing team that made it possible.</p>
+                                    
+                                    <div class="mt-4 rounded-lg overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Team celebration" class="w-full h-64 object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+                                    <div class="flex items-center space-x-1 text-text-secondary text-sm">
+                                        <i class="fas fa-thumbs-up text-primary"></i>
+                                        <i class="fas fa-heart text-error"></i>
+                                        <span>Sarah Johnson and 47 others</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 text-text-secondary text-sm">
+                                        <span>12 comments</span>
+                                        <span>5 shares</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-200">
+                                    <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span>Like</span>
+                                    </button>
+                                    <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                        <i class="fas fa-comment"></i>
+                                        <span>Comment</span>
+                                    </button>
+                                    <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                        <i class="fas fa-share"></i>
+                                        <span>Share</span>
+                                    </button>
+                                    <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                        <i class="fas fa-paper-plane"></i>
+                                        <span>Send</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Recommendation Post -->
+                    <div class="card border-l-4 border-accent">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
+                                <i class="fas fa-briefcase text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-semibold text-text-primary">Job Recommendation</h4>
+                                        <p class="text-sm text-text-secondary">Based on your profile and activity</p>
+                                    </div>
+                                    <button class="text-text-secondary hover:text-primary transition-colors duration-200">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="mt-4 p-4 bg-accent-50 rounded-lg">
+                                    <h5 class="font-semibold text-text-primary">Senior Software Engineer</h5>
+                                    <p class="text-sm text-text-secondary">TechCorp • San Francisco, CA</p>
+                                    <p class="text-sm text-text-primary mt-2">Join our innovative team building next-generation software solutions. We're looking for experienced engineers passionate about clean code and scalable architecture.</p>
+                                    
+                                    <div class="flex items-center space-x-4 mt-3 text-sm text-text-secondary">
+                                        <span><i class="fas fa-clock mr-1"></i>Posted 2 days ago</span>
+                                        <span><i class="fas fa-users mr-1"></i>50+ applicants</span>
+                                        <span><i class="fas fa-dollar-sign mr-1"></i>$120k - $160k</span>
+                                    </div>
+                                    
+                                    <div class="flex items-center space-x-3 mt-4">
+                                        <button class="btn-primary text-sm px-4 py-2">Apply Now</button>
+                                        <button class="text-primary hover:text-primary-700 transition-colors duration-200 text-sm">
+                                            <i class="fas fa-bookmark mr-1"></i>Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Company Update Post -->
+                    <div class="card">
+                        <div class="flex items-start space-x-3">
+                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="TechCorp" class="w-12 h-12 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-semibold text-text-primary">TechCorp</h4>
+                                        <p class="text-sm text-text-secondary">Company Update</p>
+                                        <p class="text-xs text-text-secondary">1 day ago</p>
+                                    </div>
+                                    <button class="btn-secondary text-sm px-3 py-1">
+                                        <i class="fas fa-plus mr-1"></i>Follow
+                                    </button>
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <p class="text-text-primary">We're thrilled to announce our expansion into the European market! 🌍 This milestone represents years of hard work and dedication from our incredible team. Looking forward to serving our European customers with the same excellence they've come to expect.</p>
+                                </div>
+                                
+                                <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+                                    <div class="flex items-center space-x-1 text-text-secondary text-sm">
+                                        <i class="fas fa-thumbs-up text-primary"></i>
+                                        <span>234 reactions</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 text-text-secondary text-sm">
+                                        <span>45 comments</span>
+                                        <span>23 shares</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-200">
+                                    <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span>Like</span>
+                                    </button>
+                                    <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                        <i class="fas fa-comment"></i>
+                                        <span>Comment</span>
+                                    </button>
+                                    <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                        <i class="fas fa-share"></i>
+                                        <span>Share</span>
+                                    </button>
+                                    <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                        <i class="fas fa-paper-plane"></i>
+                                        <span>Send</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Industry News Post -->
+                    <div class="card">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center">
+                                <i class="fas fa-newspaper text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-semibold text-text-primary">Industry News</h4>
+                                        <p class="text-sm text-text-secondary">Technology Trends</p>
+                                        <p class="text-xs text-text-secondary">3 hours ago</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <h5 class="font-semibold text-text-primary">AI Revolution: How Machine Learning is Transforming Software Development</h5>
+                                    <p class="text-text-secondary mt-2">The latest advancements in artificial intelligence are reshaping how developers write, test, and deploy code. From automated code generation to intelligent debugging...</p>
+                                    
+                                    <div class="mt-4 rounded-lg overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3" alt="AI Technology" class="w-full h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                    </div>
+                                    
+                                    <button class="text-primary hover:text-primary-700 transition-colors duration-200 text-sm font-medium mt-3">
+                                        Read full article <i class="fas fa-external-link-alt ml-1"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+                                    <div class="flex items-center space-x-1 text-text-secondary text-sm">
+                                        <i class="fas fa-thumbs-up text-primary"></i>
+                                        <span>89 reactions</span>
+                                    </div>
+                                    <div class="flex items-center space-x-4 text-text-secondary text-sm">
+                                        <span>23 comments</span>
+                                        <span>15 shares</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-200">
+                                    <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span>Like</span>
+                                    </button>
+                                    <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                        <i class="fas fa-comment"></i>
+                                        <span>Comment</span>
+                                    </button>
+                                    <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                        <i class="fas fa-share"></i>
+                                        <span>Share</span>
+                                    </button>
+                                    <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                        <i class="fas fa-paper-plane"></i>
+                                        <span>Send</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center mt-8">
+                    <button id="loadMoreBtn" class="btn-secondary px-6 py-3">
+                        <i class="fas fa-plus mr-2"></i>Load More Posts
+                    </button>
+                </div>
+            </section>
+
+            <!-- Right Sidebar -->
+            <aside class="lg:col-span-3">
+                <!-- People You May Know -->
+                <div class="card mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="font-semibold text-text-primary">People you may know</h4>
+                        <button class="text-text-secondary hover:text-primary transition-colors duration-200">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Mike Chen" class="w-12 h-12 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <h5 class="font-medium text-text-primary text-sm">Mike Chen</h5>
+                                    <p class="text-xs text-text-secondary">UX Designer at DesignCo</p>
+                                    <p class="text-xs text-text-secondary">5 mutual connections</p>
+                                </div>
+                            </div>
+                            <button class="btn-primary text-xs px-3 py-1">
+                                <i class="fas fa-user-plus mr-1"></i>Connect
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Emily Rodriguez" class="w-12 h-12 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <h5 class="font-medium text-text-primary text-sm">Emily Rodriguez</h5>
+                                    <p class="text-xs text-text-secondary">Marketing Manager at BrandX</p>
+                                    <p class="text-xs text-text-secondary">3 mutual connections</p>
+                                </div>
+                            </div>
+                            <button class="btn-primary text-xs px-3 py-1">
+                                <i class="fas fa-user-plus mr-1"></i>Connect
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="David Kim" class="w-12 h-12 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div>
+                                    <h5 class="font-medium text-text-primary text-sm">David Kim</h5>
+                                    <p class="text-xs text-text-secondary">Data Scientist at DataTech</p>
+                                    <p class="text-xs text-text-secondary">8 mutual connections</p>
+                                </div>
+                            </div>
+                            <button class="btn-primary text-xs px-3 py-1">
+                                <i class="fas fa-user-plus mr-1"></i>Connect
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <a href="my_network.html" class="block text-center text-sm text-primary hover:text-primary-700 font-medium mt-4 pt-4 border-t border-gray-200 transition-colors duration-200">
+                        View all recommendations
+                    </a>
+                </div>
+
+                <!-- Trending Topics -->
+                <div class="card mb-6">
+                    <h4 class="font-semibold text-text-primary mb-4">Trending in Technology</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <h5 class="font-medium text-text-primary text-sm">#ArtificialIntelligence</h5>
+                            <p class="text-xs text-text-secondary">12,543 posts today</p>
+                        </div>
+                        <div>
+                            <h5 class="font-medium text-text-primary text-sm">#RemoteWork</h5>
+                            <p class="text-xs text-text-secondary">8,921 posts today</p>
+                        </div>
+                        <div>
+                            <h5 class="font-medium text-text-primary text-sm">#CloudComputing</h5>
+                            <p class="text-xs text-text-secondary">6,234 posts today</p>
+                        </div>
+                        <div>
+                            <h5 class="font-medium text-text-primary text-sm">#Cybersecurity</h5>
+                            <p class="text-xs text-text-secondary">4,567 posts today</p>
+                        </div>
+                        <div>
+                            <h5 class="font-medium text-text-primary text-sm">#StartupLife</h5>
+                            <p class="text-xs text-text-secondary">3,891 posts today</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div class="card">
+                    <h4 class="font-semibold text-text-primary mb-4">Upcoming Events</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-12 h-12 bg-primary-100 rounded-lg flex flex-col items-center justify-center">
+                                <span class="text-xs text-primary font-medium">AUG</span>
+                                <span class="text-sm font-semibold text-primary">28</span>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-medium text-text-primary text-sm">Tech Innovation Summit 2025</h5>
+                                <p class="text-xs text-text-secondary">San Francisco, CA • 9:00 AM</p>
+                                <p class="text-xs text-text-secondary mt-1">234 attendees</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-3">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-lg flex flex-col items-center justify-center">
+                                <span class="text-xs text-secondary font-medium">SEP</span>
+                                <span class="text-sm font-semibold text-secondary">05</span>
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="font-medium text-text-primary text-sm">AI & Machine Learning Workshop</h5>
+                                <p class="text-xs text-text-secondary">Virtual Event • 2:00 PM</p>
+                                <p class="text-xs text-text-secondary mt-1">1,567 attendees</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full text-center text-sm text-primary hover:text-primary-700 font-medium mt-4 pt-4 border-t border-gray-200 transition-colors duration-200">
+                        View all events
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-gray-200 z-40">
+        <div class="flex items-center justify-around py-2">
+            <a href="dashboard.html" class="flex flex-col items-center text-primary p-2">
+                <i class="fas fa-home text-lg"></i>
+                <span class="text-xs mt-1">Home</span>
+            </a>
+            <a href="my_network.html" class="flex flex-col items-center text-text-secondary hover:text-primary transition-colors duration-200 p-2 relative">
+                <i class="fas fa-users text-lg"></i>
+                <span class="text-xs mt-1">Network</span>
+                <span class="bg-error text-white text-xs rounded-full px-1 min-w-4 h-4 flex items-center justify-center absolute -top-1 -right-1">3</span>
+            </a>
+            <button id="mobilePostBtn" class="flex flex-col items-center text-text-secondary hover:text-primary transition-colors duration-200 p-2">
+                <i class="fas fa-plus text-lg"></i>
+                <span class="text-xs mt-1">Post</span>
+            </button>
+            <a href="javascript:void(0)" class="flex flex-col items-center text-text-secondary hover:text-primary transition-colors duration-200 p-2 relative">
+                <i class="fas fa-bell text-lg"></i>
+                <span class="text-xs mt-1">Alerts</span>
+                <span class="bg-error text-white text-xs rounded-full px-1 min-w-4 h-4 flex items-center justify-center absolute -top-1 -right-1">5</span>
+            </a>
+            <a href="job_search.html" class="flex flex-col items-center text-text-secondary hover:text-primary transition-colors duration-200 p-2">
+                <i class="fas fa-briefcase text-lg"></i>
+                <span class="text-xs mt-1">Jobs</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Floating Action Button (Mobile) -->
+    <button class="floating-action md:hidden">
+        <i class="fas fa-plus text-lg"></i>
+    </button>
+
+    <!-- Success Toast -->
+    <div id="successToast" class="toast hidden">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <i class="fas fa-check-circle text-success text-lg"></i>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-text-primary">Action completed successfully!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock data for feed content
+        const mockPosts = [
+            {
+                id: 1,
+                author: "Alex Thompson",
+                title: "Senior Developer at CodeCraft",
+                time: "4 hours ago",
+                content: "Just completed a challenging project using React and Node.js. The learning curve was steep, but the results are amazing! 💻 #WebDevelopment #React",
+                image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3",
+                likes: 156,
+                comments: 23,
+                shares: 8
+            },
+            {
+                id: 2,
+                author: "Lisa Wang",
+                title: "Product Designer at DesignHub",
+                time: "6 hours ago",
+                content: "Excited to share our latest design system that will help teams build consistent user experiences across all platforms. Collaboration is key! 🎨",
+                image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3",
+                likes: 89,
+                comments: 15,
+                shares: 12
+            }
+        ];
+
+        // DOM Elements
+        const profileDropdown = document.getElementById('profileDropdown');
+        const profileDropdownMenu = document.getElementById('profileDropdownMenu');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const startPostBtn = document.getElementById('startPostBtn');
+        const mobilePostBtn = document.getElementById('mobilePostBtn');
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        const activityFeed = document.getElementById('activityFeed');
+        const globalSearch = document.getElementById('globalSearch');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const successToast = document.getElementById('successToast');
+
+        // Profile dropdown functionality
+        profileDropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+            profileDropdownMenu.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!profileDropdown.contains(e.target)) {
+                profileDropdownMenu.classList.add('hidden');
+            }
+        });
+
+        // Global search functionality
+        globalSearch.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            if (query.length > 2) {
+                // Simulate search suggestions
+                console.log('Searching for:', query);
+                // In a real app, this would trigger API calls
+            }
+        });
+
+        // Post creation handlers
+        function handlePostCreation() {
+            // Simulate post creation modal or redirect
+            showToast('Post creation feature coming soon!');
+        }
+
+        startPostBtn.addEventListener('click', handlePostCreation);
+        if (mobilePostBtn) {
+            mobilePostBtn.addEventListener('click', handlePostCreation);
+        }
+
+        // Load more posts functionality
+        loadMoreBtn.addEventListener('click', function() {
+            this.disabled = true;
+            this.innerHTML = '<div class="animate-spin h-4 w-4 border-2 border-gray-300 border-t-primary rounded-full mr-3"></div>Loading...';
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                loadMorePosts();
+                this.disabled = false;
+                this.innerHTML = '<i class="fas fa-plus mr-2"></i>Load More Posts';
+            }, 1500);
+        });
+
+        // Load more posts function
+        function loadMorePosts() {
+            mockPosts.forEach(post => {
+                const postElement = createPostElement(post);
+                activityFeed.appendChild(postElement);
+            });
+            showToast('New posts loaded successfully!');
+        }
+
+        // Create post element
+        function createPostElement(post) {
+            const postDiv = document.createElement('div');
+            postDiv.className = 'card';
+            postDiv.innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" 
+                         alt="${post.author}" 
+                         class="w-12 h-12 rounded-full object-cover"
+                         onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-text-primary">${post.author}</h4>
+                                <p class="text-sm text-text-secondary">${post.title}</p>
+                                <p class="text-xs text-text-secondary">${post.time}</p>
+                            </div>
+                            <button class="text-text-secondary hover:text-primary transition-colors duration-200">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <p class="text-text-primary">${post.content}</p>
+                            ${post.image ? `
+                                <div class="mt-4 rounded-lg overflow-hidden">
+                                    <img src="${post.image}" 
+                                         alt="Post image" 
+                                         class="w-full h-64 object-cover"
+                                         onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;">
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div class="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
+                            <div class="flex items-center space-x-1 text-text-secondary text-sm">
+                                <i class="fas fa-thumbs-up text-primary"></i>
+                                <span>${post.likes} reactions</span>
+                            </div>
+                            <div class="flex items-center space-x-4 text-text-secondary text-sm">
+                                <span>${post.comments} comments</span>
+                                <span>${post.shares} shares</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-200">
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span>Like</span>
+                            </button>
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                <i class="fas fa-comment"></i>
+                                <span>Comment</span>
+                            </button>
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                <i class="fas fa-share"></i>
+                                <span>Share</span>
+                            </button>
+                            <button class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-gray-50">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Send</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            return postDiv;
+        }
+
+        // Post interaction handlers
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('button') && e.target.closest('button').textContent.includes('Like')) {
+                e.target.closest('button').classList.toggle('text-primary');
+                showToast('Post liked!');
+            }
+            
+            if (e.target.closest('button') && e.target.closest('button').textContent.includes('Connect')) {
+                e.target.closest('button').innerHTML = '<i class="fas fa-check mr-1"></i>Pending';
+                e.target.closest('button').disabled = true;
+                e.target.closest('button').classList.add('opacity-50');
+                showToast('Connection request sent!');
+            }
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', function() {
+            localStorage.removeItem('userSession');
+            showToast('Logged out successfully!');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1500);
+        });
+
+        // Show toast function
+        function showToast(message, duration = 3000) {
+            const toast = successToast.cloneNode(true);
+            toast.querySelector('p').textContent = message;
+            toast.classList.remove('hidden');
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, duration);
+        }
+
+        // Pull to refresh simulation (mobile)
+        let startY = 0;
+        let pullDistance = 0;
+        const pullThreshold = 100;
+
+        document.addEventListener('touchstart', function(e) {
+            startY = e.touches[0].pageY;
+        });
+
+        document.addEventListener('touchmove', function(e) {
+            if (window.scrollY === 0) {
+                pullDistance = e.touches[0].pageY - startY;
+                if (pullDistance > 0 && pullDistance < pullThreshold) {
+                    // Visual feedback for pull to refresh
+                    document.body.style.transform = `translateY(${pullDistance / 3}px)`;
+                }
+            }
+        });
+
+        document.addEventListener('touchend', function(e) {
+            if (pullDistance > pullThreshold) {
+                // Trigger refresh
+                showToast('Refreshing feed...');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            }
+            
+            document.body.style.transform = '';
+            pullDistance = 0;
+        });
+
+        // Check authentication
+        window.addEventListener('load', function() {
+            const userSession = localStorage.getItem('userSession');
+            if (!userSession) {
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Infinite scroll simulation
+        let isLoading = false;
+        window.addEventListener('scroll', function() {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1000 && !isLoading) {
+                isLoading = true;
+                setTimeout(() => {
+                    loadMorePosts();
+                    isLoading = false;
+                }, 1000);
+            }
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate real-time updates
+            setInterval(() => {
+                // Update notification badges randomly
+                const badges = document.querySelectorAll('.bg-error');
+                badges.forEach(badge => {
+                    if (Math.random() > 0.8) {
+                        const currentCount = parseInt(badge.textContent);
+                        badge.textContent = currentCount + 1;
+                    }
+                });
+            }, 30000); // Update every 30 seconds
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Network - LinkedIn Clone</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flinkedinc5262back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header with Logo and Navigation -->
+    <header class="bg-surface shadow-card border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg class="w-10 h-10 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span class="ml-3 text-2xl font-bold text-primary">LinkedIn Clone</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.html" class="flex flex-col items-center text-text-secondary hover:text-primary transition-colors duration-200">
+                        <i class="fas fa-home text-lg mb-1"></i>
+                        <span class="text-xs">Home</span>
+                    </a>
+                    <a href="my_network.html" class="flex flex-col items-center text-primary">
+                        <i class="fas fa-users text-lg mb-1"></i>
+                        <span class="text-xs">My Network</span>
+                    </a>
+                    <a href="job_search.html" class="flex flex-col items-center text-text-secondary hover:text-primary transition-colors duration-200">
+                        <i class="fas fa-briefcase text-lg mb-1"></i>
+                        <span class="text-xs">Jobs</span>
+                    </a>
+                    <a href="profile_management.html" class="flex flex-col items-center text-text-secondary hover:text-primary transition-colors duration-200">
+                        <i class="fas fa-user text-lg mb-1"></i>
+                        <span class="text-xs">Profile</span>
+                    </a>
+                </nav>
+
+                <!-- User Menu -->
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 text-text-secondary hover:text-primary transition-colors duration-200">
+                        <i class="fas fa-bell text-lg"></i>
+                    </button>
+                    <div class="relative">
+                        <button id="userMenuBtn" class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Profile" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <i class="fas fa-chevron-down text-xs text-text-secondary"></i>
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-surface rounded-lg shadow-modal border border-gray-200 py-2 z-50">
+                            <a href="profile_management.html" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-user mr-3"></i>View Profile
+                            </a>
+                            <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-cog mr-3"></i>Settings
+                            </a>
+                            <hr class="my-2 border-gray-200" />
+                            <a href="login.html" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-sign-out-alt mr-3"></i>Sign Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="md:hidden border-t border-gray-200">
+            <div class="flex justify-around py-2">
+                <a href="dashboard.html" class="flex flex-col items-center py-2 text-text-secondary">
+                    <i class="fas fa-home text-lg"></i>
+                    <span class="text-xs mt-1">Home</span>
+                </a>
+                <a href="my_network.html" class="flex flex-col items-center py-2 text-primary">
+                    <i class="fas fa-users text-lg"></i>
+                    <span class="text-xs mt-1">Network</span>
+                </a>
+                <a href="job_search.html" class="flex flex-col items-center py-2 text-text-secondary">
+                    <i class="fas fa-briefcase text-lg"></i>
+                    <span class="text-xs mt-1">Jobs</span>
+                </a>
+                <a href="profile_management.html" class="flex flex-col items-center py-2 text-text-secondary">
+                    <i class="fas fa-user text-lg"></i>
+                    <span class="text-xs mt-1">Profile</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- Sidebar - Desktop Filters -->
+            <aside class="hidden lg:block w-80">
+                <!-- Network Statistics -->
+                <div class="card mb-6">
+                    <h2 class="text-lg font-semibold text-text-primary mb-4">Network Overview</h2>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Total Connections</span>
+                            <span class="font-semibold text-primary">1,247</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">This Month</span>
+                            <span class="font-semibold text-success">+23</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Pending Invitations</span>
+                            <span class="font-semibold text-warning">8</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Sent Requests</span>
+                            <span class="font-semibold text-secondary">12</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Filters -->
+                <div class="card">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Filter Connections</h3>
+                    <div class="space-y-4">
+                        <!-- Industry Filter -->
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Industry</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                                <option>All Industries</option>
+                                <option>Technology</option>
+                                <option>Finance</option>
+                                <option>Healthcare</option>
+                                <option>Marketing</option>
+                                <option>Education</option>
+                            </select>
+                        </div>
+
+                        <!-- Location Filter -->
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Location</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                                <option>All Locations</option>
+                                <option>New York, NY</option>
+                                <option>San Francisco, CA</option>
+                                <option>London, UK</option>
+                                <option>Toronto, CA</option>
+                                <option>Remote</option>
+                            </select>
+                        </div>
+
+                        <!-- Company Filter -->
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Company</label>
+                            <input type="text" placeholder="Search companies..." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" />
+                        </div>
+
+                        <!-- Connection Date -->
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Connected</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                                <option>Any time</option>
+                                <option>Past week</option>
+                                <option>Past month</option>
+                                <option>Past 3 months</option>
+                                <option>Past year</option>
+                            </select>
+                        </div>
+
+                        <button class="w-full btn-primary">Apply Filters</button>
+                        <button class="w-full text-text-secondary hover:text-primary transition-colors duration-200">Clear All</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="flex-1">
+                <!-- Mobile Statistics Card -->
+                <div class="card mb-6 lg:hidden">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-primary">1,247</div>
+                            <div class="text-sm text-text-secondary">Connections</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-success">+23</div>
+                            <div class="text-sm text-text-secondary">This Month</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="card mb-6">
+                    <div class="relative">
+                        <input type="text" id="connectionSearch" placeholder="Search your connections..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" />
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center">
+                            <i class="fas fa-search text-text-secondary"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div class="card mb-6">
+                    <div class="flex border-b border-gray-200">
+                        <button id="invitationsTab" class="tab-button active px-6 py-3 text-sm font-medium border-b-2 border-primary text-primary">
+                            Invitations (8)
+                        </button>
+                        <button id="connectionsTab" class="tab-button px-6 py-3 text-sm font-medium border-b-2 border-transparent text-text-secondary hover:text-primary">
+                            Connections (1,247)
+                        </button>
+                        <button id="discoverTab" class="tab-button px-6 py-3 text-sm font-medium border-b-2 border-transparent text-text-secondary hover:text-primary">
+                            Discover
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="tabContent">
+                    <!-- Invitations Tab -->
+                    <div id="invitationsContent" class="tab-content">
+                        <div class="space-y-4">
+                            <!-- Invitation Card 1 -->
+                            <div class="card">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Sarah Johnson" class="w-16 h-16 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                        <div class="flex-1">
+                                            <h3 class="font-semibold text-text-primary">Sarah Johnson</h3>
+                                            <p class="text-text-secondary">Senior Marketing Manager at TechCorp</p>
+                                            <p class="text-sm text-text-secondary">12 mutual connections</p>
+                                            <p class="text-xs text-text-secondary mt-1">2 days ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="px-4 py-2 border border-gray-300 rounded-lg text-text-secondary hover:bg-gray-50 transition-colors duration-200">
+                                            Ignore
+                                        </button>
+                                        <button class="btn-primary px-4 py-2">Accept</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Invitation Card 2 -->
+                            <div class="card">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-4">
+                                        <img src="https://images.pixabay.com/photo/2016/11/21/12/42/beard-1845166_150.jpg" alt="Michael Chen" class="w-16 h-16 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                        <div class="flex-1">
+                                            <h3 class="font-semibold text-text-primary">Michael Chen</h3>
+                                            <p class="text-text-secondary">Software Engineer at StartupXYZ</p>
+                                            <p class="text-sm text-text-secondary">5 mutual connections</p>
+                                            <p class="text-xs text-text-secondary mt-1">1 week ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="px-4 py-2 border border-gray-300 rounded-lg text-text-secondary hover:bg-gray-50 transition-colors duration-200">
+                                            Ignore
+                                        </button>
+                                        <button class="btn-primary px-4 py-2">Accept</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bulk Actions -->
+                            <div class="card bg-primary-50 border-primary-200">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <input type="checkbox" id="selectAll" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded" />
+                                        <label for="selectAll" class="text-sm text-text-primary">Select all invitations</label>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="px-4 py-2 bg-success text-white rounded-lg hover:bg-success-700 transition-colors duration-200">
+                                            Accept All
+                                        </button>
+                                        <button class="px-4 py-2 bg-error text-white rounded-lg hover:bg-error-700 transition-colors duration-200">
+                                            Ignore All
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Connections Tab -->
+                    <div id="connectionsContent" class="tab-content hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                            <!-- Connection Card 1 -->
+                            <div class="card">
+                                <div class="text-center">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Emily Davis" class="w-20 h-20 rounded-full object-cover mx-auto mb-4" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                    <h3 class="font-semibold text-text-primary">Emily Davis</h3>
+                                    <p class="text-sm text-text-secondary mb-2">Product Designer at Google</p>
+                                    <p class="text-xs text-text-secondary mb-4">Connected 3 months ago</p>
+                                    <button class="w-full btn-secondary text-sm py-2">
+                                        <i class="fas fa-envelope mr-2"></i>Message
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Connection Card 2 -->
+                            <div class="card">
+                                <div class="text-center">
+                                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150" alt="David Wilson" class="w-20 h-20 rounded-full object-cover mx-auto mb-4" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                    <h3 class="font-semibold text-text-primary">David Wilson</h3>
+                                    <p class="text-sm text-text-secondary mb-2">Data Scientist at Microsoft</p>
+                                    <p class="text-xs text-text-secondary mb-4">Connected 1 year ago</p>
+                                    <button class="w-full btn-secondary text-sm py-2">
+                                        <i class="fas fa-envelope mr-2"></i>Message
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Connection Card 3 -->
+                            <div class="card">
+                                <div class="text-center">
+                                    <img src="https://images.pixabay.com/photo/2017/06/26/02/47/man-2442565_150.jpg" alt="Alex Rodriguez" class="w-20 h-20 rounded-full object-cover mx-auto mb-4" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                    <h3 class="font-semibold text-text-primary">Alex Rodriguez</h3>
+                                    <p class="text-sm text-text-secondary mb-2">Marketing Director at Adobe</p>
+                                    <p class="text-xs text-text-secondary mb-4">Connected 6 months ago</p>
+                                    <button class="w-full btn-secondary text-sm py-2">
+                                        <i class="fas fa-envelope mr-2"></i>Message
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Load More Button -->
+                        <div class="text-center mt-8">
+                            <button class="btn-primary px-8 py-3">Load More Connections</button>
+                        </div>
+                    </div>
+
+                    <!-- Discover Tab -->
+                    <div id="discoverContent" class="tab-content hidden">
+                        <!-- People You May Know -->
+                        <div class="card mb-6">
+                            <h3 class="text-lg font-semibold text-text-primary mb-4">People You May Know</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Suggestion Card 1 -->
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex items-center space-x-4">
+                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3" alt="James Thompson" class="w-16 h-16 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                        <div class="flex-1">
+                                            <h4 class="font-semibold text-text-primary">James Thompson</h4>
+                                            <p class="text-sm text-text-secondary">VP of Engineering at Tesla</p>
+                                            <p class="text-xs text-text-secondary">8 mutual connections</p>
+                                        </div>
+                                        <button class="btn-primary px-4 py-2 text-sm">
+                                            <i class="fas fa-plus mr-2"></i>Connect
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Suggestion Card 2 -->
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex items-center space-x-4">
+                                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Lisa Anderson" class="w-16 h-16 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                        <div class="flex-1">
+                                            <h4 class="font-semibold text-text-primary">Lisa Anderson</h4>
+                                            <p class="text-sm text-text-secondary">UX Research Lead at Airbnb</p>
+                                            <p class="text-xs text-text-secondary">15 mutual connections</p>
+                                        </div>
+                                        <button class="btn-primary px-4 py-2 text-sm">
+                                            <i class="fas fa-plus mr-2"></i>Connect
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Import Contacts -->
+                        <div class="card">
+                            <div class="text-center py-8">
+                                <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-address-book text-2xl text-primary"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-text-primary mb-2">Find people you know</h3>
+                                <p class="text-text-secondary mb-6">Import your contacts to see who's already on LinkedIn Clone</p>
+                                <button class="btn-secondary px-6 py-3">
+                                    <i class="fas fa-upload mr-2"></i>Import Contacts
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-gray-200 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-text-secondary text-sm">
+                <p>&copy; 2025 LinkedIn Clone. All Rights Reserved.</p>
+                <div class="mt-2 space-x-4">
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Terms of Service</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Help Center</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Toast -->
+    <div id="successToast" class="toast hidden">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <i class="fas fa-check-circle text-success text-lg"></i>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-text-primary" id="successMessage">Action completed successfully!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock data for connections and invitations
+        const mockConnections = [
+            { id: 1, name: 'Emily Davis', title: 'Product Designer at Google', image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3', connected: '3 months ago' },
+            { id: 2, name: 'David Wilson', title: 'Data Scientist at Microsoft', image: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150', connected: '1 year ago' },
+            { id: 3, name: 'Alex Rodriguez', title: 'Marketing Director at Adobe', image: 'https://images.pixabay.com/photo/2017/06/26/02/47/man-2442565_150.jpg', connected: '6 months ago' }
+        ];
+
+        const mockSuggestions = [
+            { id: 1, name: 'James Thompson', title: 'VP of Engineering at Tesla', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop&ixlib=rb-4.0.3', mutualConnections: 8 },
+            { id: 2, name: 'Lisa Anderson', title: 'UX Research Lead at Airbnb', image: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150', mutualConnections: 15 }
+        ];
+
+        // DOM Elements
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const userDropdown = document.getElementById('userDropdown');
+        const connectionSearch = document.getElementById('connectionSearch');
+        const successToast = document.getElementById('successToast');
+        const successMessage = document.getElementById('successMessage');
+
+        // Tab elements
+        const invitationsTab = document.getElementById('invitationsTab');
+        const connectionsTab = document.getElementById('connectionsTab');
+        const discoverTab = document.getElementById('discoverTab');
+        const invitationsContent = document.getElementById('invitationsContent');
+        const connectionsContent = document.getElementById('connectionsContent');
+        const discoverContent = document.getElementById('discoverContent');
+
+        // User menu toggle
+        userMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function() {
+            userDropdown.classList.add('hidden');
+        });
+
+        // Tab switching functionality
+        function switchTab(activeTab, activeContent) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-button').forEach(tab => {
+                tab.classList.remove('active', 'border-primary', 'text-primary');
+                tab.classList.add('border-transparent', 'text-text-secondary');
+            });
+
+            // Hide all content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Activate selected tab
+            activeTab.classList.add('active', 'border-primary', 'text-primary');
+            activeTab.classList.remove('border-transparent', 'text-text-secondary');
+
+            // Show selected content
+            activeContent.classList.remove('hidden');
+        }
+
+        // Tab event listeners
+        invitationsTab.addEventListener('click', () => switchTab(invitationsTab, invitationsContent));
+        connectionsTab.addEventListener('click', () => switchTab(connectionsTab, connectionsContent));
+        discoverTab.addEventListener('click', () => switchTab(discoverTab, discoverContent));
+
+        // Search functionality
+        connectionSearch.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            // In a real app, this would filter the connections
+            console.log('Searching for:', searchTerm);
+        });
+
+        // Show toast notification
+        function showToast(message, duration = 3000) {
+            successMessage.textContent = message;
+            successToast.classList.remove('hidden');
+            setTimeout(() => {
+                successToast.classList.add('hidden');
+            }, duration);
+        }
+
+        // Accept invitation functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.textContent === 'Accept') {
+                e.target.closest('.card').style.opacity = '0.5';
+                e.target.disabled = true;
+                e.target.textContent = 'Accepted';
+                e.target.classList.remove('btn-primary');
+                e.target.classList.add('bg-success', 'text-white');
+                showToast('Connection request accepted!');
+            }
+
+            if (e.target.textContent === 'Ignore') {
+                e.target.closest('.card').style.opacity = '0.5';
+                e.target.disabled = true;
+                e.target.textContent = 'Ignored';
+                showToast('Invitation ignored');
+            }
+
+            if (e.target.textContent.includes('Connect')) {
+                e.target.disabled = true;
+                e.target.innerHTML = '<i class="fas fa-clock mr-2"></i>Pending';
+                e.target.classList.remove('btn-primary');
+                e.target.classList.add('bg-warning', 'text-white');
+                showToast('Connection request sent!');
+            }
+        });
+
+        // Bulk actions
+        const selectAllCheckbox = document.getElementById('selectAll');
+        if (selectAllCheckbox) {
+            selectAllCheckbox.addEventListener('change', function() {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(#selectAll)');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = this.checked;
+                });
+            });
+        }
+
+        // Accept All functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.textContent === 'Accept All') {
+                const acceptButtons = document.querySelectorAll('button:contains("Accept")');
+                acceptButtons.forEach(button => {
+                    if (button.textContent === 'Accept') {
+                        button.click();
+                    }
+                });
+                showToast('All invitations accepted!');
+            }
+
+            if (e.target.textContent === 'Ignore All') {
+                const ignoreButtons = document.querySelectorAll('button:contains("Ignore")');
+                ignoreButtons.forEach(button => {
+                    if (button.textContent === 'Ignore') {
+                        button.click();
+                    }
+                });
+                showToast('All invitations ignored');
+            }
+        });
+
+        // Message button functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('button') && e.target.closest('button').textContent.includes('Message')) {
+                showToast('Opening message composer...');
+                // In a real app, this would open a message modal or navigate to messages
+            }
+        });
+
+        // Import contacts functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.textContent.includes('Import Contacts')) {
+                showToast('Contact import feature coming soon!');
+            }
+        });
+
+        // Load more connections
+        document.addEventListener('click', function(e) {
+            if (e.target.textContent === 'Load More Connections') {
+                e.target.disabled = true;
+                e.target.innerHTML = '<div class="animate-spin h-4 w-4 border-2 border-gray-300 border-t-primary rounded-full mr-2"></div>Loading...';
+                
+                setTimeout(() => {
+                    e.target.disabled = false;
+                    e.target.textContent = 'Load More Connections';
+                    showToast('More connections loaded!');
+                }, 2000);
+            }
+        });
+
+        // Mobile swipe gestures (basic implementation)
+        let startX = 0;
+        let startY = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            if (!startX || !startY) return;
+
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+
+            // Only handle horizontal swipes
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                const card = e.target.closest('.card');
+                if (card && card.querySelector('button:contains("Accept")')) {
+                    if (diffX > 0) {
+                        // Swipe left - ignore
+                        const ignoreBtn = card.querySelector('button:contains("Ignore")');
+                        if (ignoreBtn) ignoreBtn.click();
+                    } else {
+                        // Swipe right - accept
+                        const acceptBtn = card.querySelector('button:contains("Accept")');
+                        if (acceptBtn) acceptBtn.click();
+                    }
+                }
+            }
+
+            startX = 0;
+            startY = 0;
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const userSession = localStorage.getItem('userSession');
+            if (!userSession) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Load cached connections if available
+            const cachedConnections = localStorage.getItem('userConnections');
+            if (cachedConnections) {
+                console.log('Loaded cached connections:', JSON.parse(cachedConnections));
+            }
+
+            // Simulate real-time notifications
+            setTimeout(() => {
+                showToast('You have 2 new connection requests!');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

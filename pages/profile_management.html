@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Management - LinkedIn Clone</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flinkedinc5262back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header with Navigation -->
+    <header class="bg-surface shadow-card border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg class="w-10 h-10 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span class="ml-3 text-2xl font-bold text-primary">LinkedIn Clone</span>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.html" class="flex items-center text-text-secondary hover:text-primary transition-colors duration-200">
+                        <i class="fas fa-home mr-2"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="my_network.html" class="flex items-center text-text-secondary hover:text-primary transition-colors duration-200">
+                        <i class="fas fa-users mr-2"></i>
+                        <span>My Network</span>
+                    </a>
+                    <a href="job_search.html" class="flex items-center text-text-secondary hover:text-primary transition-colors duration-200">
+                        <i class="fas fa-briefcase mr-2"></i>
+                        <span>Jobs</span>
+                    </a>
+                    <a href="profile_management.html" class="flex items-center text-primary font-medium">
+                        <i class="fas fa-user mr-2"></i>
+                        <span>Profile</span>
+                    </a>
+                </nav>
+
+                <!-- User Menu -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="userMenuBtn" class="flex items-center space-x-2 text-text-secondary hover:text-primary transition-colors duration-200">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-surface rounded-lg shadow-modal border border-gray-200 py-2 z-50">
+                            <a href="profile_management.html" class="block px-4 py-2 text-text-primary hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-user mr-2"></i>View Profile
+                            </a>
+                            <a href="javascript:void(0)" class="block px-4 py-2 text-text-primary hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-cog mr-2"></i>Settings
+                            </a>
+                            <hr class="my-2" />
+                            <a href="login.html" class="block px-4 py-2 text-text-primary hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-sign-out-alt mr-2"></i>Sign Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Profile Header -->
+        <div class="mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h1 class="text-3xl font-bold text-text-primary">Profile Management</h1>
+                <div class="flex items-center space-x-4">
+                    <!-- Profile Strength -->
+                    <div class="flex items-center space-x-2">
+                        <span class="text-sm text-text-secondary">Profile Strength:</span>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-24 h-2 bg-gray-200 rounded-full">
+                                <div class="w-3/4 h-2 bg-success rounded-full"></div>
+                            </div>
+                            <span class="text-sm font-medium text-success">75%</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Visibility Toggle -->
+                    <div class="flex items-center space-x-2">
+                        <span class="text-sm text-text-secondary">Public Profile:</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="publicProfile" class="sr-only peer" checked />
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile Completion Tips -->
+            <div class="bg-primary-50 border border-primary-200 rounded-lg p-4">
+                <div class="flex items-start space-x-3">
+                    <i class="fas fa-lightbulb text-primary mt-1"></i>
+                    <div>
+                        <h3 class="text-sm font-medium text-primary mb-1">Complete your profile to stand out</h3>
+                        <p class="text-sm text-primary-700">Add 2 more skills and a professional summary to reach 100% completion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main Profile Content -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Basic Information Section -->
+                <section class="card">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-text-primary flex items-center">
+                            <i class="fas fa-user-circle mr-3 text-primary"></i>
+                            Basic Information
+                        </h2>
+                        <button id="editBasicBtn" class="text-primary hover:text-primary-700 transition-colors duration-200">
+                            <i class="fas fa-edit mr-1"></i>Edit
+                        </button>
+                    </div>
+
+                    <!-- Cover Photo -->
+                    <div class="relative mb-6">
+                        <div class="h-48 bg-gradient-to-r from-primary to-secondary rounded-lg overflow-hidden">
+                            <img id="coverImage" src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cover" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                        </div>
+                        <button id="changeCoverBtn" class="absolute top-4 right-4 bg-surface text-text-primary px-3 py-2 rounded-lg shadow-card hover:shadow-modal transition-all duration-200">
+                            <i class="fas fa-camera mr-2"></i>Change Cover
+                        </button>
+                        
+                        <!-- Profile Photo -->
+                        <div class="absolute -bottom-16 left-6">
+                            <div class="relative">
+                                <img id="profileImage" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Profile" class="w-32 h-32 rounded-full object-cover border-4 border-surface shadow-card" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <button id="changePhotoBtn" class="absolute bottom-2 right-2 bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-primary-700 transition-colors duration-200">
+                                    <i class="fas fa-camera text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Basic Info Form -->
+                    <div class="pt-20">
+                        <div id="basicInfoView" class="space-y-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-text-primary">John Doe</h3>
+                                <p class="text-lg text-text-secondary">Senior Software Engineer at Tech Corp</p>
+                                <p class="text-text-secondary flex items-center mt-2">
+                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                    San Francisco, CA
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4 pt-4">
+                                <span class="text-sm text-primary font-medium">500+ connections</span>
+                                <span class="text-sm text-text-secondary">•</span>
+                                <a href="javascript:void(0)" class="text-sm text-primary hover:underline">Contact info</a>
+                            </div>
+                        </div>
+
+                        <div id="basicInfoEdit" class="hidden space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-text-primary mb-2">First Name</label>
+                                    <input type="text" id="firstName" value="John" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" />
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-text-primary mb-2">Last Name</label>
+                                    <input type="text" id="lastName" value="Doe" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" />
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Professional Headline</label>
+                                <input type="text" id="headline" value="Senior Software Engineer at Tech Corp" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Location</label>
+                                <input type="text" id="location" value="San Francisco, CA" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" />
+                            </div>
+                            <div class="flex space-x-3 pt-4">
+                                <button id="saveBasicBtn" class="btn-primary">Save Changes</button>
+                                <button id="cancelBasicBtn" class="px-4 py-2 border border-gray-300 rounded-lg text-text-primary hover:bg-gray-50 transition-colors duration-200">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- About Section -->
+                <section class="card">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-text-primary flex items-center">
+                            <i class="fas fa-info-circle mr-3 text-primary"></i>
+                            About
+                        </h2>
+                        <button id="editAboutBtn" class="text-primary hover:text-primary-700 transition-colors duration-200">
+                            <i class="fas fa-edit mr-1"></i>Edit
+                        </button>
+                    </div>
+
+                    <div id="aboutView">
+                        <p class="text-text-secondary leading-relaxed">
+                            Passionate software engineer with 8+ years of experience building scalable web applications. 
+                            Expertise in React, Node.js, and cloud technologies. Love solving complex problems and 
+                            mentoring junior developers. Always eager to learn new technologies and contribute to 
+                            innovative projects.
+                        </p>
+                    </div>
+
+                    <div id="aboutEdit" class="hidden">
+                        <textarea id="aboutText" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Write about yourself...">Passionate software engineer with 8+ years of experience building scalable web applications. Expertise in React, Node.js, and cloud technologies. Love solving complex problems and mentoring junior developers. Always eager to learn new technologies and contribute to innovative projects.</textarea>
+                        <div class="flex space-x-3 pt-4">
+                            <button id="saveAboutBtn" class="btn-primary">Save</button>
+                            <button id="cancelAboutBtn" class="px-4 py-2 border border-gray-300 rounded-lg text-text-primary hover:bg-gray-50 transition-colors duration-200">Cancel</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Experience Section -->
+                <section class="card">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-text-primary flex items-center">
+                            <i class="fas fa-briefcase mr-3 text-primary"></i>
+                            Experience
+                        </h2>
+                        <button id="addExperienceBtn" class="btn-primary">
+                            <i class="fas fa-plus mr-2"></i>Add Experience
+                        </button>
+                    </div>
+
+                    <div id="experienceList" class="space-y-6">
+                        <!-- Experience Item 1 -->
+                        <div class="experience-item border-b border-gray-200 pb-6">
+                            <div class="flex items-start space-x-4">
+                                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Company" class="w-12 h-12 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h3 class="font-semibold text-text-primary">Senior Software Engineer</h3>
+                                            <p class="text-text-secondary">Tech Corp • Full-time</p>
+                                            <p class="text-sm text-text-secondary">Jan 2022 - Present • 3 yrs</p>
+                                            <p class="text-sm text-text-secondary">San Francisco, CA</p>
+                                        </div>
+                                        <button class="text-text-secondary hover:text-primary transition-colors duration-200">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
+                                    <p class="text-text-secondary mt-3 leading-relaxed">
+                                        Lead development of microservices architecture serving 1M+ users. 
+                                        Mentored team of 5 junior developers and improved deployment efficiency by 40%.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience Item 2 -->
+                        <div class="experience-item">
+                            <div class="flex items-start space-x-4">
+                                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Company" class="w-12 h-12 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h3 class="font-semibold text-text-primary">Software Engineer</h3>
+                                            <p class="text-text-secondary">StartupXYZ • Full-time</p>
+                                            <p class="text-sm text-text-secondary">Jun 2019 - Dec 2021 • 2 yrs 7 mos</p>
+                                            <p class="text-sm text-text-secondary">San Francisco, CA</p>
+                                        </div>
+                                        <button class="text-text-secondary hover:text-primary transition-colors duration-200">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
+                                    <p class="text-text-secondary mt-3 leading-relaxed">
+                                        Built and maintained React-based web applications. Collaborated with design team 
+                                        to implement responsive UI components and improved user engagement by 25%.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills Section -->
+                <section class="card">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-text-primary flex items-center">
+                            <i class="fas fa-cogs mr-3 text-primary"></i>
+                            Skills
+                        </h2>
+                        <button id="addSkillBtn" class="btn-primary">
+                            <i class="fas fa-plus mr-2"></i>Add Skill
+                        </button>
+                    </div>
+
+                    <div id="skillsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Skill Item 1 -->
+                        <div class="skill-item p-4 border border-gray-200 rounded-lg">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-medium text-text-primary">JavaScript</h3>
+                                <button class="text-text-secondary hover:text-primary transition-colors duration-200">
+                                    <i class="fas fa-edit text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="flex items-center space-x-2 text-sm text-text-secondary">
+                                <span>12 endorsements</span>
+                                <button class="text-primary hover:underline">+ Endorse</button>
+                            </div>
+                        </div>
+
+                        <!-- Skill Item 2 -->
+                        <div class="skill-item p-4 border border-gray-200 rounded-lg">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-medium text-text-primary">React</h3>
+                                <button class="text-text-secondary hover:text-primary transition-colors duration-200">
+                                    <i class="fas fa-edit text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="flex items-center space-x-2 text-sm text-text-secondary">
+                                <span>8 endorsements</span>
+                                <button class="text-primary hover:underline">+ Endorse</button>
+                            </div>
+                        </div>
+
+                        <!-- Skill Item 3 -->
+                        <div class="skill-item p-4 border border-gray-200 rounded-lg">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-medium text-text-primary">Node.js</h3>
+                                <button class="text-text-secondary hover:text-primary transition-colors duration-200">
+                                    <i class="fas fa-edit text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="flex items-center space-x-2 text-sm text-text-secondary">
+                                <span>6 endorsements</span>
+                                <button class="text-primary hover:underline">+ Endorse</button>
+                            </div>
+                        </div>
+
+                        <!-- Skill Item 4 -->
+                        <div class="skill-item p-4 border border-gray-200 rounded-lg">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-medium text-text-primary">AWS</h3>
+                                <button class="text-text-secondary hover:text-primary transition-colors duration-200">
+                                    <i class="fas fa-edit text-sm"></i>
+                                </button>
+                            </div>
+                            <div class="flex items-center space-x-2 text-sm text-text-secondary">
+                                <span>4 endorsements</span>
+                                <button class="text-primary hover:underline">+ Endorse</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Education Section -->
+                <section class="card">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-text-primary flex items-center">
+                            <i class="fas fa-graduation-cap mr-3 text-primary"></i>
+                            Education
+                        </h2>
+                        <button id="addEducationBtn" class="btn-primary">
+                            <i class="fas fa-plus mr-2"></i>Add Education
+                        </button>
+                    </div>
+
+                    <div id="educationList" class="space-y-6">
+                        <!-- Education Item -->
+                        <div class="education-item">
+                            <div class="flex items-start space-x-4">
+                                <img src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="University" class="w-12 h-12 rounded object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h3 class="font-semibold text-text-primary">Stanford University</h3>
+                                            <p class="text-text-secondary">Bachelor of Science, Computer Science</p>
+                                            <p class="text-sm text-text-secondary">2015 - 2019</p>
+                                        </div>
+                                        <button class="text-text-secondary hover:text-primary transition-colors duration-200">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
+                                    <p class="text-text-secondary mt-2">
+                                        Graduated Magna Cum Laude. Relevant coursework: Data Structures, Algorithms, 
+                                        Software Engineering, Database Systems.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- Profile Analytics -->
+                <div class="card">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4 flex items-center">
+                        <i class="fas fa-chart-line mr-2 text-primary"></i>
+                        Profile Analytics
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-text-secondary">Profile views</span>
+                            <span class="font-semibold text-text-primary">127</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-text-secondary">Search appearances</span>
+                            <span class="font-semibold text-text-primary">43</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-text-secondary">Post impressions</span>
+                            <span class="font-semibold text-text-primary">1,234</span>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 text-primary hover:bg-primary-50 py-2 rounded-lg transition-colors duration-200">
+                        View detailed analytics
+                    </button>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4 flex items-center">
+                        <i class="fas fa-bolt mr-2 text-primary"></i>
+                        Quick Actions
+                    </h3>
+                    <div class="space-y-3">
+                        <button class="w-full text-left p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 flex items-center">
+                            <i class="fas fa-download mr-3 text-primary"></i>
+                            <span>Export as PDF</span>
+                        </button>
+                        <button class="w-full text-left p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 flex items-center">
+                            <i class="fas fa-eye mr-3 text-primary"></i>
+                            <span>Preview Public Profile</span>
+                        </button>
+                        <button class="w-full text-left p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 flex items-center">
+                            <i class="fas fa-link mr-3 text-primary"></i>
+                            <span>Customize URL</span>
+                        </button>
+                        <button class="w-full text-left p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 flex items-center">
+                            <i class="fas fa-shield-alt mr-3 text-primary"></i>
+                            <span>Privacy Settings</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile Tips -->
+                <div class="card">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4 flex items-center">
+                        <i class="fas fa-lightbulb mr-2 text-warning"></i>
+                        Profile Tips
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-warning-50 rounded-lg border border-warning-200">
+                            <p class="text-sm text-warning-800">
+                                <i class="fas fa-star mr-2"></i>
+                                Add a professional summary to increase profile views by 40%
+                            </p>
+                        </div>
+                        <div class="p-3 bg-success-50 rounded-lg border border-success-200">
+                            <p class="text-sm text-success-800">
+                                <i class="fas fa-check mr-2"></i>
+                                Great job! Your profile photo looks professional
+                            </p>
+                        </div>
+                        <div class="p-3 bg-primary-50 rounded-lg border border-primary-200">
+                            <p class="text-sm text-primary-800">
+                                <i class="fas fa-users mr-2"></i>
+                                Connect with colleagues to expand your network
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-gray-200 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-text-secondary text-sm">
+                <p>&copy; 2025 LinkedIn Clone. All Rights Reserved.</p>
+                <div class="mt-2 space-x-4">
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Terms of Service</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Help Center</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Toast -->
+    <div id="successToast" class="toast hidden">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <i class="fas fa-check-circle text-success text-lg"></i>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-text-primary">Changes saved successfully!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const userDropdown = document.getElementById('userDropdown');
+        const publicProfileToggle = document.getElementById('publicProfile');
+        const successToast = document.getElementById('successToast');
+
+        // User menu toggle
+        userMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function() {
+            userDropdown.classList.add('hidden');
+        });
+
+        // Basic Info Edit functionality
+        const editBasicBtn = document.getElementById('editBasicBtn');
+        const basicInfoView = document.getElementById('basicInfoView');
+        const basicInfoEdit = document.getElementById('basicInfoEdit');
+        const saveBasicBtn = document.getElementById('saveBasicBtn');
+        const cancelBasicBtn = document.getElementById('cancelBasicBtn');
+
+        editBasicBtn.addEventListener('click', function() {
+            basicInfoView.classList.add('hidden');
+            basicInfoEdit.classList.remove('hidden');
+        });
+
+        cancelBasicBtn.addEventListener('click', function() {
+            basicInfoEdit.classList.add('hidden');
+            basicInfoView.classList.remove('hidden');
+        });
+
+        saveBasicBtn.addEventListener('click', function() {
+            // Simulate saving
+            showToast();
+            basicInfoEdit.classList.add('hidden');
+            basicInfoView.classList.remove('hidden');
+            
+            // Update view with new values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const headline = document.getElementById('headline').value;
+            const location = document.getElementById('location').value;
+            
+            basicInfoView.querySelector('h3').textContent = `${firstName} ${lastName}`;
+            basicInfoView.querySelector('p').textContent = headline;
+            basicInfoView.querySelector('p:last-of-type').innerHTML = `<i class="fas fa-map-marker-alt mr-2"></i>${location}`;
+        });
+
+        // About Edit functionality
+        const editAboutBtn = document.getElementById('editAboutBtn');
+        const aboutView = document.getElementById('aboutView');
+        const aboutEdit = document.getElementById('aboutEdit');
+        const saveAboutBtn = document.getElementById('saveAboutBtn');
+        const cancelAboutBtn = document.getElementById('cancelAboutBtn');
+
+        editAboutBtn.addEventListener('click', function() {
+            aboutView.classList.add('hidden');
+            aboutEdit.classList.remove('hidden');
+        });
+
+        cancelAboutBtn.addEventListener('click', function() {
+            aboutEdit.classList.add('hidden');
+            aboutView.classList.remove('hidden');
+        });
+
+        saveAboutBtn.addEventListener('click', function() {
+            const aboutText = document.getElementById('aboutText').value;
+            aboutView.querySelector('p').textContent = aboutText;
+            showToast();
+            aboutEdit.classList.add('hidden');
+            aboutView.classList.remove('hidden');
+        });
+
+        // Photo upload handlers
+        document.getElementById('changePhotoBtn').addEventListener('click', function() {
+            // Simulate photo upload
+            showToast('Profile photo updated successfully!');
+        });
+
+        document.getElementById('changeCoverBtn').addEventListener('click', function() {
+            // Simulate cover photo upload
+            showToast('Cover photo updated successfully!');
+        });
+
+        // Add buttons handlers
+        document.getElementById('addExperienceBtn').addEventListener('click', function() {
+            showToast('Experience form opened (demo)');
+        });
+
+        document.getElementById('addSkillBtn').addEventListener('click', function() {
+            showToast('Skill form opened (demo)');
+        });
+
+        document.getElementById('addEducationBtn').addEventListener('click', function() {
+            showToast('Education form opened (demo)');
+        });
+
+        // Public profile toggle
+        publicProfileToggle.addEventListener('change', function() {
+            const status = this.checked ? 'enabled' : 'disabled';
+            showToast(`Public profile ${status}`);
+        });
+
+        // Show toast function
+        function showToast(message = 'Changes saved successfully!', duration = 3000) {
+            const toast = document.getElementById('successToast');
+            const messageElement = toast.querySelector('p');
+            messageElement.textContent = message;
+            
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, duration);
+        }
+
+        // Simulate auto-save functionality
+        const inputs = document.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            let timeout;
+            input.addEventListener('input', function() {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    // Simulate auto-save
+                    console.log('Auto-saved:', this.value);
+                }, 2000);
+            });
+        });
+
+        // Profile strength calculation
+        function updateProfileStrength() {
+            // Simulate profile strength calculation
+            const completedSections = 3; // Basic info, about, experience
+            const totalSections = 4; // + skills
+            const percentage = Math.round((completedSections / totalSections) * 100);
+            
+            const progressBar = document.querySelector('.w-3/4');
+            const percentageText = document.querySelector('.text-success');
+            
+            progressBar.style.width = `${percentage}%`;
+            percentageText.textContent = `${percentage}%`;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProfileStrength();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - LinkedIn Clone</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Flinkedinc5262back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+</head>
+<body class="bg-background min-h-screen">
+    <!-- Header with Logo -->
+    <header class="bg-surface shadow-card border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <svg class="w-10 h-10 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span class="ml-3 text-2xl font-bold text-primary">LinkedIn Clone</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+            <!-- Welcome Section -->
+            <div class="text-center">
+                <h1 class="text-3xl font-bold text-text-primary mb-2">Welcome back</h1>
+                <p class="text-text-secondary">Don't miss your next opportunity. Sign in to stay updated on your professional world.</p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="card">
+                <form id="loginForm" class="space-y-6">
+                    <!-- Email Field -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-text-primary mb-2">
+                            Email or Phone
+                        </label>
+                        <div class="relative">
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 text-text-primary placeholder-text-secondary" placeholder="Enter your email" autocomplete="email" />
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <i class="fas fa-envelope text-text-secondary"></i>
+                            </div>
+                        </div>
+                        <div id="emailError" class="text-error text-sm mt-1 hidden"></div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-text-primary mb-2">
+                            Password
+                        </label>
+                        <div class="relative">
+                            <input type="password" id="password" name="password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors duration-200 text-text-primary placeholder-text-secondary pr-12" placeholder="Enter your password" autocomplete="current-password" />
+                            <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-text-secondary hover:text-text-primary transition-colors duration-200">
+                                <i class="fas fa-eye" id="eyeIcon"></i>
+                            </button>
+                        </div>
+                        <div id="passwordError" class="text-error text-sm mt-1 hidden"></div>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input id="remember" name="remember" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded" />
+                            <label for="remember" class="ml-2 block text-sm text-text-secondary">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="javascript:void(0)" class="text-sm text-primary hover:text-primary-700 font-medium transition-colors duration-200">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <!-- Sign In Button -->
+                    <button type="submit" id="signInBtn" class="w-full btn-primary flex items-center justify-center py-3 text-base font-medium rounded-lg transition-all duration-200 hover:shadow-md">
+                        <span id="signInText">Sign in</span>
+                        <div id="loadingSpinner" class="hidden ml-2">
+                            <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                            </svg>
+                        </div>
+                    </button>
+
+                    <!-- Divider -->
+                    <div class="relative my-6">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-surface text-text-secondary">Or</span>
+                        </div>
+                    </div>
+
+                    <!-- Social Login Options -->
+                    <div class="space-y-3">
+                        <button type="button" class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg text-text-primary bg-surface hover:bg-gray-50 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24" fill="#0077B5">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                            Continue with LinkedIn
+                        </button>
+                        
+                        <button type="button" class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg text-text-primary bg-surface hover:bg-gray-50 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-3" viewBox="0 0 24 24">
+                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                            </svg>
+                            Continue with Google
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Registration Link -->
+            <div class="text-center">
+                <p class="text-text-secondary">
+                    New to LinkedIn Clone? 
+                    <a href="register.html" class="text-primary hover:text-primary-700 font-medium transition-colors duration-200">
+                        Join now
+                    </a>
+                </p>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="flex items-center justify-center space-x-6 pt-6">
+                <div class="flex items-center text-success text-sm">
+                    <i class="fas fa-shield-alt mr-2"></i>
+                    <span>SSL Secured</span>
+                </div>
+                <div class="flex items-center text-success text-sm">
+                    <i class="fas fa-lock mr-2"></i>
+                    <span>Privacy Protected</span>
+                </div>
+                <div class="flex items-center text-success text-sm">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span>GDPR Compliant</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-gray-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-text-secondary text-sm">
+                <p>&copy; 2025 LinkedIn Clone. All Rights Reserved.</p>
+                <div class="mt-2 space-x-4">
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Terms of Service</a>
+                    <a href="javascript:void(0)" class="hover:text-primary transition-colors duration-200">Help Center</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Toast (Hidden by default) -->
+    <div id="successToast" class="toast hidden">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <i class="fas fa-check-circle text-success text-lg"></i>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-text-primary">Login successful!</p>
+                <p class="text-xs text-text-secondary">Redirecting to dashboard...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Toast (Hidden by default) -->
+    <div id="errorToast" class="toast hidden border-l-4 border-error">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <i class="fas fa-exclamation-circle text-error text-lg"></i>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-text-primary">Login failed</p>
+                <p class="text-xs text-text-secondary" id="errorMessage">Please check your credentials and try again.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock user credentials for testing
+        const mockUsers = [
+            { email: 'john.doe@email.com', password: 'password123' },
+            { email: 'jane.smith@company.com', password: 'securepass456' },
+            { email: 'admin@linkedin.com', password: 'admin123' }
+        ];
+
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const togglePasswordBtn = document.getElementById('togglePassword');
+        const eyeIcon = document.getElementById('eyeIcon');
+        const signInBtn = document.getElementById('signInBtn');
+        const signInText = document.getElementById('signInText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const successToast = document.getElementById('successToast');
+        const errorToast = document.getElementById('errorToast');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Password toggle functionality
+        togglePasswordBtn.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            if (type === 'text') {
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        });
+
+        // Email validation
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Show error for field
+        function showFieldError(fieldId, message) {
+            const errorDiv = document.getElementById(fieldId + 'Error');
+            const field = document.getElementById(fieldId);
+            
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+            field.classList.add('border-error', 'focus:ring-error', 'focus:border-error');
+            field.classList.remove('border-gray-300', 'focus:ring-primary', 'focus:border-primary');
+        }
+
+        // Clear field error
+        function clearFieldError(fieldId) {
+            const errorDiv = document.getElementById(fieldId + 'Error');
+            const field = document.getElementById(fieldId);
+            
+            errorDiv.classList.add('hidden');
+            field.classList.remove('border-error', 'focus:ring-error', 'focus:border-error');
+            field.classList.add('border-gray-300', 'focus:ring-primary', 'focus:border-primary');
+        }
+
+        // Show toast
+        function showToast(toastElement, duration = 3000) {
+            toastElement.classList.remove('hidden');
+            setTimeout(() => {
+                toastElement.classList.add('hidden');
+            }, duration);
+        }
+
+        // Clear all errors
+        function clearAllErrors() {
+            clearFieldError('email');
+            clearFieldError('password');
+        }
+
+        // Real-time validation
+        emailInput.addEventListener('input', function() {
+            if (this.value && !validateEmail(this.value)) {
+                showFieldError('email', 'Please enter a valid email address');
+            } else {
+                clearFieldError('email');
+            }
+        });
+
+        passwordInput.addEventListener('input', function() {
+            if (this.value.length > 0 && this.value.length < 6) {
+                showFieldError('password', 'Password must be at least 6 characters');
+            } else {
+                clearFieldError('password');
+            }
+        });
+
+        // Form submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            let hasErrors = false;
+
+            // Clear previous errors
+            clearAllErrors();
+
+            // Validate email
+            if (!email) {
+                showFieldError('email', 'Email is required');
+                hasErrors = true;
+            } else if (!validateEmail(email)) {
+                showFieldError('email', 'Please enter a valid email address');
+                hasErrors = true;
+            }
+
+            // Validate password
+            if (!password) {
+                showFieldError('password', 'Password is required');
+                hasErrors = true;
+            } else if (password.length < 6) {
+                showFieldError('password', 'Password must be at least 6 characters');
+                hasErrors = true;
+            }
+
+            if (hasErrors) {
+                return;
+            }
+
+            // Show loading state
+            signInText.textContent = 'Signing in...';
+            loadingSpinner.classList.remove('hidden');
+            signInBtn.disabled = true;
+
+            // Simulate authentication
+            setTimeout(() => {
+                const user = mockUsers.find(u => u.email === email && u.password === password);
+                
+                if (user) {
+                    // Store user session
+                    localStorage.setItem('userSession', JSON.stringify({
+                        email: user.email,
+                        loginTime: new Date().toISOString(),
+                        rememberMe: document.getElementById('remember').checked
+                    }));
+
+                    // Show success toast
+                    showToast(successToast);
+
+                    // Redirect to dashboard
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1500);
+                } else {
+                    // Show error
+                    errorMessage.textContent = 'Invalid email or password. Please try again.';
+                    showToast(errorToast);
+                    
+                    // Reset button state
+                    signInText.textContent = 'Sign in';
+                    loadingSpinner.classList.add('hidden');
+                    signInBtn.disabled = false;
+                }
+            }, 1500);
+        });
+
+        // Check if user is already logged in
+        window.addEventListener('load', function() {
+            const userSession = localStorage.getItem('userSession');
+            if (userSession) {
+                const session = JSON.parse(userSession);
+                if (session.rememberMe) {
+                    window.location.href = 'dashboard.html';
+                }
+            }
+        });
+
+        // Social login handlers
+        document.querySelectorAll('button[type="button"]').forEach(button => {
+            if (button.textContent.includes('Continue with')) {
+                button.addEventListener('click', function() {
+                    const provider = this.textContent.includes('LinkedIn') ? 'LinkedIn' : 'Google';
+                    
+                    // Simulate social login
+                    this.disabled = true;
+                    this.innerHTML = `<div class="animate-spin h-4 w-4 border-2 border-gray-300 border-t-primary rounded-full mr-3"></div>Connecting...`;
+                    
+                    setTimeout(() => {
+                        // Mock successful social login
+                        localStorage.setItem('userSession', JSON.stringify({
+                            email: `user@${provider.toLowerCase()}.com`,
+                            loginTime: new Date().toISOString(),
+                            provider: provider,
+                            rememberMe: true
+                        }));
+                        
+                        showToast(successToast);
+                        setTimeout(() => {
+                            window.location.href = 'dashboard.html';
+                        }, 1500);
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
